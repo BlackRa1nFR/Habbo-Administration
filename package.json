@@ -1,0 +1,47 @@
+{
+  "name": "habbo_administration_node",
+  "version": "1.0.0",
+  "description": "An ES6 Admin Panel",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node index.js --presets es2015,stage-2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrismpettyjohn/habbo_administration_node.git"
+  },
+  "keywords": [
+    "habbo",
+    "hotel"
+  ],
+  "author": "Chris Pettyjohn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrismpettyjohn/habbo_administration_node/issues"
+  },
+  "homepage": "https://github.com/chrismpettyjohn/habbo_administration_node#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.17.1",
+    "bookshelf": "^0.10.3",
+    "chalk": "^1.1.3",
+    "connect-flash": "^0.1.1",
+    "connect-redis": "^3.2.0",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.6",
+    "express": "^4.15.2",
+    "express-session": "^1.15.1",
+    "glob": "^7.1.1",
+    "knex": "^0.12.7",
+    "mysql": "^2.13.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "validator": "^7.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "babel-watch": "^2.0.6"
+  }
+}

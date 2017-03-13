@@ -1,0 +1,13 @@
+{
+    "client"     :   "mysql",
+    "connection" :  {
+        "host"      : "139.59.171.102",
+        "user"      : "root",
+        "password"  : "password",
+        "database"  : "habbo"
+    },
+    "pools"      : {
+        "min"       : 5,
+        "max"       : 120
+    }
+}
