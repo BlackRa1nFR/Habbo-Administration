@@ -10,15 +10,23 @@ class Login
     {
         Website.get('/login', this.get);
         Website.post('/login', passport.authenticate('login', {
-            successRedirect: '/dashboard',
-            failureRedirect: '/login',
-            failureFlash : true
+            successRedirect     : '/dashboard',
+            failureRedirect     : '/login',
+            failureFlash        : true,
+            badRequestMessage   : 'Daddy No!!'
         }));
     }
 
     get (request, result) 
     {
-        result.render('guest/login');
+        if (!request.user)
+        {
+            result.render('guest/login');
+        }
+        else 
+        {
+            result.redirect('/dashboard');
+        }
     }
 
 }

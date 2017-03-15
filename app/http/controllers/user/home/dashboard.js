@@ -10,7 +10,9 @@ class Dashboard
 
     get (request, result)
     {
-        result.render('user/home/dashboard');
+        result.render('user/home/dashboard', {
+            page : 'Dashboard'
+        });
     }
 
 }

@@ -1,5 +1,6 @@
 'use strict';
 
+import Moment from 'moment';
 import Passport from 'passport';
 import Hash from 'bcrypt-nodejs';
 import Validator from 'validator';
@@ -10,44 +11,42 @@ import Session from './database/models/administration/users/session';
 const Local = localdb.Strategy;
 
     // Login 
-    Passport.use('login', new Local({ usernameField : 'username', passwordField : 'password', pressReqToCallback : true }, function(request, username, password, done) {
-
-        if (Validator.isAlphanumeric(username))
-        {
-
-            User.where('username', username).fetch()
+    Passport.use('login', new Local({ passReqToCallback: true }, function(req, username, password, done) {
+        User.where('username', username).fetch()
                 .then ((user) => {
-
-                    if (user)
+                    
+                    if (user != null)
                     {
                         user = user.toJSON();
-
                         if (Hash.compareSync(password, user.password))
                         {
-                            // Form Session 
-                            new Session({ cookie_id : request.cookies.connect.sid }).save()
-                                .then ((data) => {
-                                    done(null, data.toJSON())
-                                })
-                            // 
+                            new Session({ user_id : user.id, ip_address : req.headers['x-forwarded-for'] || req.connection.remoteAddress, created_at : Moment(new Date()).format("YYYY-MM-DD HH:mm:ss") }).save()
+                            .then ((status) => {
+                                Session.where('id', status.toJSON().id).fetch({withRelated : ['user']})
+                                    .then ((session) => {
+                                        done(null, session.toJSON());
+                                    })
+                                    .catch ((error) => {
+                                        done(null, null, 'Something went wrong');
+                                    });
+                            })
+                            .catch ((error) => {
+                                done(null, null, 'Something went wrong');
+                            });
                         }
                         else 
                         {
-                            // Log Session Error 
-                            done(null, null, request.flash('error', 'Could not authenticate this request'));
+                            done(null, null, 'Failed to authenticate');
                         }
                     }
-
+                    else 
+                    {
+                       done(null, null, 'That user does not exist'); 
+                    }
+                })
+                .catch ((error) => {
+                    done(null, null, 'Something went wrong');
                 });
-
-
-
-        }
-        else 
-        {
-            done(null, null, request.flash('error', 'Usernames can only contain letters and numbers'));
-        }
-
     }));
 
     Passport.serializeUser(function(user, done) {
@@ -55,7 +54,14 @@ const Local = localdb.Strategy;
     });
 
     Passport.deserializeUser(function(user, done) {
-        done(null, user);
+        Session.where('id', user.id).fetch({ withRelated : ['user'] })
+        .then ((data) => {
+            done(null, data.toJSON());
+        })
+        .catch ((error) => {
+            done('Failed to find session.');
+        });
+        
     });
 
 module.exports = Passport;

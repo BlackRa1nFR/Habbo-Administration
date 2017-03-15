@@ -10,8 +10,8 @@ class Variables
 
     apply (request, result, next)
     {
-        result.locals.success = null;
-        result.locals.error   = null;
+        result.locals.success = request.flash('success');
+        result.locals.error   = request.flash('error');
         next();
     }
 }

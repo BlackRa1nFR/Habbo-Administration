@@ -10,7 +10,7 @@ import cookie_parser from 'cookie-parser';
 import Application from '../../application';
 import authentication from '../authentication';
 
-class HTTP
+class HTTP 
 {
 
     constructor () 
@@ -23,17 +23,17 @@ class HTTP
         Website.set('views', home + '/public/views');
         Website.set('view engine', 'ejs');
 
-        // User Sessions 
-        Website.use(session({ store : new redis, saveUninitialized: true, resave: true, secret: 'it*SFVse', ttl : 3600, cookie: { maxAge: 3600000 * 24 * 7 } }));
-        Website.use(passport.initialize());
-        Website.use(passport.session());
-
         // Middleware 
         Website.use(compress());
         Website.use(express.static(home + '/public/assets', { index : 'index.html' }));
         Website.use(body_parser.urlencoded({extended:true}));
         Website.use(body_parser.json());
         Website.use(cookie_parser());
+
+        // User Sessions 
+        Website.use(session({ store : new redis, saveUninitialized: true, resave: true, secret: 'it*SFVse', ttl : 3600, cookie: { maxAge: 3600000 * 24 * 7 } }));
+        Website.use(passport.initialize());
+        Website.use(passport.session());
         Website.use(flash());
 
         // Load Middleware 

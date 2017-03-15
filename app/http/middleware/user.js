@@ -13,34 +13,15 @@ class User
 
     user (request, result, next)
     {
-        if (request.path.indexOf ('.css') == -1 && request.path.indexOf('.js') == -1 && request.path.indexOf('.png') == -1)
+        if (request.user)
         {
-            if (request.path != '/login')
-            {
-
-                if (request.user)
-                {
-                    next();
-                }
-                else 
-                {
-                    result.redirect('/login');
-                }
-
-            }
-            else 
-            {
-                next();
-            }
+            result.locals.user = request.user.user;
+            next();
         }
         else 
         {
-            next();
+            result.redirect('/login');
         }
-            
-            
-
-
     }
 
 }

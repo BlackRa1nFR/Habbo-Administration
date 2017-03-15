@@ -13,4 +13,4 @@ class User extends Database.Model
 
 }
 
-export default User;
+module.exports = User;
