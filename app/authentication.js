@@ -5,12 +5,12 @@ import Passport from 'passport';
 import Hash from 'bcrypt-nodejs';
 import Validator from 'validator';
 import localdb from 'passport-local';
-import User from './database/models/administration/users/user';
-import Session from './database/models/administration/users/session';
+import User from './database/models/admin/users/user';
+import Session from './database/models/admin/users/session';
 
 const Local = localdb.Strategy;
 
-    // Login 
+    // Login  
     Passport.use('login', new Local({ passReqToCallback: true }, function(req, username, password, done) {
         User.where('username', username).fetch()
                 .then ((user) => {
@@ -22,7 +22,7 @@ const Local = localdb.Strategy;
                         {
                             new Session({ user_id : user.id, ip_address : req.headers['x-forwarded-for'] || req.connection.remoteAddress, created_at : Moment(new Date()).format("YYYY-MM-DD HH:mm:ss") }).save()
                             .then ((status) => {
-                                Session.where('id', status.toJSON().id).fetch({withRelated : ['user']})
+                                Session.where('id', status.toJSON().id).fetch({withRelated : ['user', 'user.habbo']})
                                     .then ((session) => {
                                         done(null, session.toJSON());
                                     })
@@ -54,12 +54,13 @@ const Local = localdb.Strategy;
     });
 
     Passport.deserializeUser(function(user, done) {
-        Session.where('id', user.id).fetch({ withRelated : ['user'] })
+        Session.where('id', user.id).fetch({ withRelated : ['user', 'user.habbo'] })
         .then ((data) => {
             done(null, data.toJSON());
         })
         .catch ((error) => {
-            done('Failed to find session.');
+            console.log(error);
+            done('Session has been removed.');
         });
         
     });

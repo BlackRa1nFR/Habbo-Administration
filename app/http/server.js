@@ -1,15 +1,17 @@
 'use strict';
 
+import chalk from 'chalk';
 import express from 'express';
 import passport from 'passport';
 import flash from 'connect-flash';
 import compress from 'compression';
+import response from 'response-time';
 import body_parser from 'body-parser';
 import session from 'express-session';
 import cookie_parser from 'cookie-parser';
 import Application from '../../application';
 import authentication from '../authentication';
-
+ 
 class HTTP 
 {
 
@@ -47,8 +49,19 @@ class HTTP
             const Class = require(file);
             new Class(Website);
         });
+        
+        Website.get('/*', function (request, result) { return result.redirect('/login'); });
 
         Website.listen(80, '0.0.0.0');
+        console.log(
+            chalk.bgRed.bold(
+            "                                                           " + "\n" +
+            "                                                           " + "\n" +
+            "                      " + parseInt(Date.now() - start) + "ms to launch                      " + "\n" + 
+            "                                                           " + "\n" +
+            "                                                           " + "\n" 
+            )
+        );
     }
 
 }

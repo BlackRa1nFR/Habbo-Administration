@@ -1,7 +1,6 @@
 'use strict';
 
 import passport from 'passport';
-import Users from '../../../database/models/emulator/users/users';
 
 class Login
 {

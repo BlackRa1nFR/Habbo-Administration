@@ -6,21 +6,42 @@ class User
 
     constructor (Website)
     {
-        Website.use(this.user);
+        Website.use(User.apply);
     }
 
 
 
-    user (request, result, next)
+    static apply (request, result, next)
     {
         if (request.user)
         {
             result.locals.user = request.user.user;
-            next();
+
+            if (request.user.user.status != 'regular')
+            {
+                switch (request.user.user.status)
+                {
+                    case 'locked': result.render('errors/account/locked'); break;
+                    case 'pending_reset': result.render('errors/account/reset'); break;
+                    default: next(); break;
+                }
+            }
+            else
+            {
+                next();
+            }
+
         }
         else 
         {
-            result.redirect('/login');
+            if (request.path == '/login')
+            {
+                next();
+            }
+            else
+            {
+                result.redirect('/login');
+            }
         }
     }
 

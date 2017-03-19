@@ -1,6 +1,6 @@
 'use strict';
 
-import database from './app/database/server';
+import chalk from 'chalk';
 import website from './app/http/server';
 
 class Application 
@@ -8,29 +8,47 @@ class Application
 
     constructor ()
     {
-        this.environment();
+        Application.environment();
 
-        this.console();
+        Application.console();
 
         new website;
     }
 
-    // Environment 
-    environment ()
+    static environment ()
     {
         global.home = __dirname;
+        global.crash = false;
+        global.start = Date.now();
     }
 
 
-    // Console 
-    console ()
-    {
+    static console ()
+    {  
         process.stdout.write("\x1B[2J");
-        
-        console.log('');
-        console.log('       Chris Codes - Habbo Administration I');
-        console.log();
-    
+        console.log(
+            chalk.bgRed.bold(
+            "                                                           " + "\n" +
+            "                                                           " + "\n" +
+            "                       xHabbo Two                          " + "\n" + 
+            "                   Developed by LeChris                    " + "\n" + 
+            "                                                           " + "\n" + 
+            "                                                           " + "\n" 
+            ) 
+            + chalk.bgYellow(
+            "                                                           " + "\n" +
+            "                                                           " + "\n" +
+            "                        Database                           " + "\n" +
+            "                    Plus Emulator Ready                    " + "\n" +
+            "                                                           " + "\n" +
+            "                                                           "  
+            )       
+        );
+    }
+
+    static crash ()
+    {
+        global.crash = true;
     }
 
 

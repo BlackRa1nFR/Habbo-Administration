@@ -1,0 +1,133 @@
+<% include ../../header %>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel">
+            <div class="panel-body text-center">
+                <div class="icon-object border-success-400 text-success"><i class="icon-book"></i></div>
+                <h5 class="text-semibold">Knowledge Base</h5>
+                <p class="mb-15">Discover quick information about this adminstration panel, and its potential.  Articles ranging from quick help, to full changelogs.</p>
+                <a href="#" class="btn bg-success-400">Browse articles</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel">
+            <div class="panel-body text-center">
+                <div class="icon-object border-warning-400 text-warning"><i class="icon-lifebuoy"></i></div>
+                <h5 class="text-semibold">Discussion Area</h5>
+                <p class="mb-15">Come here to openly discuss and plan out ongoing events, or things in the future for the sake of your website.</p>
+                <a href="#" class="btn bg-warning-400">Open thread</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel">
+            <div class="panel-body text-center">
+                <div class="icon-object border-blue text-blue"><i class="icon-reading"></i></div>
+                <h5 class="text-semibold">Task Manager</h5>
+                <p class="mb-15">An easy way to take control of your administration team, and to help guide your members in the right direction.</p>
+                <a href="#" class="btn bg-blue">Browse tasks</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-flat">
+            <div class="panel-heading">
+                <h6 class="panel-title"><i class="icon-cog3 position-left"></i> Development Log</h6>
+            </div>
+            <div class="panel-body">
+                <div class="panel-group panel-group-control panel-group-control-right">
+                    <div class="panel panel-white">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" href="#introduction" aria-expanded="false">
+                                    <i class="icon-help position-left text-slate"></i> Administration in a new perspective
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="introduction" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                Rather than providing users with a boring and quite dull experience, we wanted to change the game. <br> <br>
+                                Administration should be important, easy, but also fun.  Our mission was to fulfill all of those desires, and also do more! <br> <br>
+                                With features such as our task managemer, discussion area, and full-scale management wrapped in a beautiful package; It's impossible not to fall in love.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-group panel-group-control panel-group-control-right">
+                    <div class="panel panel-white">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" href="#upcomingChanges" aria-expanded="false">
+                                    <i class="icon-watch2 position-left text-slate"></i> Upcoming Changes
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="upcomingChanges" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                <ul>
+                                    <li>Create new designs
+                                        <ul>
+                                            <li>Dashboard completed</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-group panel-group-control panel-group-control-right">
+                    <div class="panel panel-white">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" href="#developmentCrew" aria-expanded="false">
+                                    <i class="icon-user-tie position-left text-slate"></i> Our Development Crew
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="developmentCrew" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                This project has been planned, and developed by the following contributors <br> <br>
+                                <b>LeChris</b> - Head Developer <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="col-xs-6">
+            <button class="btn bg-primary btn-block btn-float btn-float-lg" type="button"><i class="icon-stats-bars"></i> <span>Hotel Statistics</span></button>
+            <button class="btn bg-info btn-block btn-float btn-float-lg" type="button"><i class="icon-book"></i> <span>Event Planner</span></button>
+            <button class="btn bg-success btn-block btn-float btn-float-lg" type="button"><i class="icon-notification2"></i> <span>Emergency Services</span></button>
+        </div>
+        <div class="col-xs-6">
+            <button class="btn bg-success btn-block btn-float btn-float-lg" type="button"><i class="icon-question4"></i> <span>Support Area</span></button>
+            <button class="btn bg-primary btn-block btn-float btn-float-lg" onclick="location.href='/bans/view'"  type="button"><i class="icon-warning"></i> <span>Ban Management</span></button>
+            <button class="btn bg-info btn-block btn-float btn-float-lg" onclick="location.href='/system/backups'" type="button"><i class="icon-database"></i> <span>Database Backups</span></button>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="panel panel-flat">
+            <div class="panel-body">
+                <p>Recently Active</p> <br>
+                <ul class="media-list">
+                    <li class="media">
+                        <a href="#" class="media-left"><img src="/images/avatar.jpg" class="img-sm img-circle" alt=""></a>
+                        <div class="media-body">
+                            <a href="#" class="media-heading text-semibold">Chris P</a>
+                            <span class="text-size-mini text-muted display-block">Development Crew</span>
+                        </div>
+                        <div class="media-right media-middle">
+                            <span class="status-mark bg-success"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
