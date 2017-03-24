@@ -9,7 +9,7 @@ class Login
     {
         Website.get('/login', this.get);
         Website.post('/login', passport.authenticate('login', {
-            successRedirect     : '/dashboard',
+            successRedirect     : '/me',
             failureRedirect     : '/login',
             failureFlash        : true,
             badRequestMessage   : 'Daddy No!!'
@@ -24,7 +24,7 @@ class Login
         }
         else 
         {
-            result.redirect('/dashboard');
+            result.redirect('/me');
         }
     }
 

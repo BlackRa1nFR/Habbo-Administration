@@ -2,35 +2,43 @@
 
 import chalk from 'chalk';
 import website from './app/http/server';
+import database from './app/database/test';
 
 class Application 
 {
 
     constructor ()
     {
-        Application.environment();
-
-        Application.console();
-
-        new website;
+        this.environment();
+        this.console();
+        
+        if (new database)
+        {
+            new website;
+        } 
+        else 
+        {
+            process.exit();
+        }
     }
 
-    static environment ()
+    // Environment 
+    environment ()
     {
         global.home = __dirname;
-        global.crash = false;
         global.start = Date.now();
     }
 
 
-    static console ()
+    // Console 
+    console ()
     {  
         process.stdout.write("\x1B[2J");
         console.log(
             chalk.bgRed.bold(
             "                                                           " + "\n" +
             "                                                           " + "\n" +
-            "                       xHabbo Two                          " + "\n" + 
+            "                        Habbo CMS                          " + "\n" + 
             "                   Developed by LeChris                    " + "\n" + 
             "                                                           " + "\n" + 
             "                                                           " + "\n" 
@@ -44,11 +52,6 @@ class Application
             "                                                           "  
             )       
         );
-    }
-
-    static crash ()
-    {
-        global.crash = true;
     }
 
 

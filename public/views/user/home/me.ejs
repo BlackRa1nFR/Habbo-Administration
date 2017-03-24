@@ -1,0 +1,63 @@
+<% include ../header %>
+        <div class="meContentBox">
+            <div class="avatar" style="background-image:url(https://www.habbo.de/habbo-imaging/avatarimage?figure=<%= user.look %>&gesture=sml&size=l);"></div>
+            <div class="userDetails">
+                <h2><%= user.username %></h2>
+                <div class="motto"><%= user.motto %></div>
+                <div class="allGrayBox">
+                    <div class="grayBox">
+                        <div class="icon">
+                            <div class="credits"></div>
+                        </div>
+                        <div class="count"><%= user.credits_format %></div>
+                    </div>
+                    <div class="grayBox">
+                        <div class="icon">
+                            <div class="duckets"></div>
+                        </div>
+                        <div class="count"><%= user.pixels_format %></div>
+                    </div>
+                    <div class="grayBox">
+                        <div class="icon">
+                            <div class="diamonds"></div>
+                        </div>
+                        <div class="count"><%= user.points_format %></div>
+                    </div>
+                </div>
+            </div>
+            <a href="<%= website.findretros_link %>" target="_blank" class="checkIn">Enter Hotel</a>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    <dic class="grid_14">
+        <div id="newsSlides">
+            
+        </div>
+    </dic>
+    <div class="grid_10">
+        <div id="contentBox" style="height:278px">
+            <div class="title">Idea Center</div>
+            <div class="content">
+                <div class="helpCenter">
+                    <span>
+                        Hello <%= user.username %>, <br />
+                        We need ideas to keep making our website a better place, so if you have any feel free to tell us!
+                    </span>
+                    <form method="post" action="/ideas">
+                        <textarea name="content" class="txt" placeholder="A great idea"></textarea>
+                        <input type="submit" class="btn green" id="submit" value="Send"/>
+                    </form>
+                </div>
+                <br><br><br><br><br><br>
+            </div>
+        </div>
+    </div>
+    <div class="grid_14" style="margin-top:-7.5%;">
+        <div id="contentBox">
+            <div class="title">Current Events</div>
+            <div class="content">
+                <p>We don't have any events active.</p>
+            </div>
+        </div>
+    </div>
+</div>

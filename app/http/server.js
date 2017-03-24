@@ -27,7 +27,7 @@ class HTTP
 
         // Middleware 
         Website.use(compress());
-        Website.use(express.static(home + '/public/assets', { index : 'index.html' }));
+        //Website.use(express.static(home + '/public/assets', { index : 'index.html' }));
         Website.use(body_parser.urlencoded({extended:true}));
         Website.use(body_parser.json());
         Website.use(cookie_parser());

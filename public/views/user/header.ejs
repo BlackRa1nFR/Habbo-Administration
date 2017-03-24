@@ -1,161 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><%= settings.short_branding %> - <%= page %></title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-    <link href="/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-    <link href="/css/minified/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="/css/minified/core.min.css" rel="stylesheet" type="text/css">
-    <link href="/css/minified/components.min.css" rel="stylesheet" type="text/css">
-    <link href="/css/minified/colors.min.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="/js/core/libraries/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/core/libraries/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/core/app.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="<%= website.web_folder %>/img/favicon.ico">
+        <title><%= website.name %> - <%= page %></title>
+        <link type="text/css" href="<%= website.web_folder %>/css/960_24_col.css" rel="stylesheet">
+        <link type="text/css" href="<%= website.web_folder %>/css/style.css" rel="stylesheet">
+        <style>
+            #header-content {
+                height: 220px;
+            }
+            #header-content #header-navigation {
+                top: 180px;
+            }
+            #header-content .hotel {
+                height: 220px;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="header-content">
+        <div class="container_24">
+            <div class="grid_24">
+                <div class="headerSubLinks">
+                    <a href="/logout">Log Out</a>
+                </div>
+                <div class="hotel"></div>
+                <a href=""><div class="logo"></div></a>
+                <div id="onlineCount">
+                    <div class="arrow"></div>
+                    <b><%= server.users_online %></b> Players online
+                </div>
 
-</head>
+                <ul id="header-navigation">
 
-<body data-spy="scroll" data-target=".sidebar-detached" class="has-detached-right">
-<div class="navbar navbar-inverse">
-    <div class="navbar-header">
-        <a class="navbar-brand"><%= settings.branding %></a>
-    </div>
-    <div class="navbar-collapse collapse" id="navbar-mobile">
+                    <% navi.parents.forEach (function (n) { %>
+                        <% if (n.id == section) { %>
+                            <li><a href="/<%= n.href %>" class="selected"><%= n.text %></a></li>
+                        <% } else { %>
+                            <li><a href="/<%= n.href %>"><%= n.text %></a></li>
+                        <% } %>
+                    <% }); %>
 
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown dropdown-user">
-                <a class="dropdown-toggle" data-toggle="dropdown">
 
-                    <img src="/images/avatar.jpg" style="border-radius:60%;">
-                    <span><%= user.full_name %></span>
-                    <i class="caret"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
-                    <li class="divider"></li>
-                    <li><a href="/dashboard/settings"><i class="icon-cog5"></i> Account settings</a></li>
-                    <li><a href="/logout"><i class="icon-switch2"></i> Logout</a></li>
+                    <% if (user.rank > 2) { %>
+                        <li><a href="http://admin.habbo.social">Admin</a></li>
+                    <% } %>
+
                 </ul>
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div class="page-container">
-    <div class="page-content">
-        <div class="sidebar sidebar-main">
-            <div class="sidebar-content">
-                <div class="sidebar-user">
-                    <div class="category-content">
-                        <div class="media">
-                            <a href="#" class="media-left"><img src="/images/avatar.jpg" style="border-radius:60%;"></a>
-                            <div class="media-body">
-                                <span class="media-heading text-semibold"><%= user.full_name %></span>
-                                <div class="text-size-mini text-muted">
-                                    <i class="icon-pin text-size-small"></i> &nbsp; Testing
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-category sidebar-category-visible">
-                    <div class="category-content no-padding">
-                        <ul class="navigation navigation-main navigation-accordion">
-                            <!-- Quick Links -->
-                            <li class="navigation-header"><span> Quick Links </span> </li>
-                            <li> <a href="/dashboard"> <i class="icon-home"></i> <span> Dashboard </span> </a> </li>
-
-                            <!-- Developer -->
-                            <li class="navigation-header"><span> Developer </span> </li>
-                            <li>
-                                <a href="#"> <i class="icon-wrench"></i> <span>  Configure Website </span> </a>
-                                <ul>
-                                    <li> <a href="/"> General Settings </a> </li>
-                                    <li> <a href="/"> Registration Options </a> </li>
-                                    <li> <a href="/"> Server Manager </a> </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="icon-eye"></i> <span>  All Seeing Eye </span> </a>
-                                <ul>
-                                    <li> <a href="/"> Admin Panel Logs </a> </li>
-                                    <li> <a href="/"> Staff Command Logs </a> </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="icon-cog"></i> <span>  Customize Panel </span> </a>
-                                <ul>
-                                    <li> <a href="/"> Permission Groups </a> </li>
-                                    <li> <a href="/admin/customize/users"> Manage Users </a> </li>
-                                </ul>
-                            </li>
-
-                            <!-- Administrator -->
-                            <li class="navigation-header"><span> Administrator </span> </li>
-                            <li>
-                                <a href="#"> <i class="icon-user"></i> <span>  User Management </span> </a>
-                                <ul>
-                                    <li> <a href="/"> Quick Overview </a> </li>
-                                    <li> <a href="/hotel/users/lookup"> User Lookup </a> </li>
-                                    <li> <a href="/"> Password Reset </a> </li>
-
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="icon-lock"></i> <span>  Staff Management </span> </a>
-                                <ul>
-                                    <li> <a href="/"> Quick Overview </a> </li>
-                                    <li> <a href="/"> Permission Groups </a> </li>
-
-                                </ul>
-                            </li>
-
-                            <!-- Moderator-->
-                            <li class="navigation-header"><span> Moderator </span> </li>
-                            <li>
-                                <a href="#"> <i class="icon-newspaper"></i> <span>  News Articles </span> </a>
-                                <ul>
-                                    <li> <a href="/"> List Articles </a> </li>
-                                    <li> <a href="/"> Submit New Post </a> </li>
-
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="icon-watch"></i> <span>  Events Management </span> </a>
-                                <ul>
-                                    <li> <a href="/hotel/events/view"> Events Table </a> </li>
-                                    <li> <a href="/hotel/events/launch"> Setup New Event </a> </li>
-
-                                </ul>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
+    </div>
+    <div class="container_24">
+        <div class="grid_24">
+            <ul id="sub-navigation">
+                <% navi.children.forEach (function (n) { %>
+                    <% if (n.section == section) { %>
+                        <% if (n.href == href) { %>
+                            <li><a href="/<%= n.href %>" class="selected"><%= n.text %></a></li>
+                        <% } else { %>
+                            <li><a href="/<%= n.href %>"><%= n.text %></a></li>
+                        <% } %>
+                    <% } %>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+    <div class="container_24">
+        <div class="grid_24">
+            <% if (success.length > 0) { %>
+                <div class="alert green"><div class="icon success"><i class="fa fa-check fa-2x"></i></div><%= success %></div>
+            <% } else if (error.length > 0) { %>
+                <div class="alert red"><div class="icon error"><i class="fa fa-warning fa-2x"></i></div> <%= error %></div>
+            <% } %>
+        </div>
 
-
-        <!-- Main content -->
-        <div class="content-wrapper">
-            <div class="page-header">
-                <div class="page-header-content">
-                    <div class="page-title">
-                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold"><%= settings.branding %></span> - <%- page; %></h4>
-                    </div>
-                </div>
-
-                <div class="breadcrumb-line">
-                    <ul class="breadcrumb">
-                        <li><a href="index.html"><i class="icon-home2 position-left"></i> <%= settings.branding %></a></li>
-                        <li class="active"><%- page; %></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="content">
-
-                <div class="footer text-muted">
-                    <a href="#">xHabbo Administration</a> by <a href="http://github.com/chrismpettyjohn" target="_blank">Chris Pettyjohn</a>
-                </div>
+        <div class="grid_24">

@@ -1,7 +1,10 @@
 'use strict';
 
+import Async from 'async';
 import Cache from 'memory-cache';
-import Settings from '../../database/models/admin/settings';
+import Status from '../../database/models/emu/status';
+import Settings from '../../database/models/cms/settings';
+import Navigation from '../../database/models/cms/navigation';
 
 class Variables
 {
@@ -11,34 +14,60 @@ class Variables
         Website.use(Variables.apply);
     }
 
-    static apply (request, result, next)
+    static apply (request, result, next) 
     {
 
-       // Cache 
-       if (!Cache.get('admin_settings'))
-       {
-            Settings.forge().fetch()
-                .then ((settings) => {
-                    settings = settings.toJSON();
-                    Cache.put('admin_settings', settings);
-                    result.locals.page     = 'Page';
-                    result.locals.settings = settings;
-                    result.locals.success  = request.flash('success');
-                    result.locals.error    = request.flash('error');
-                    next();
-                })
-                .catch ((error) => {
-                    result.render('errors/500');
-                })
-       }
-       else 
-       {
-           result.locals.settings = Cache.get('admin_settings');
-           result.locals.success  = request.flash('success');
-           result.locals.error    = request.flash('error');
-           next();
-       }
+        Async.parallel([Variables.settings, Variables.server], ((errors, results) =>
+        {
+            result.locals.href    = request.path.split('/')[1];
+            result.locals.website = results[0];
+            result.locals.server  = results[1];
+            result.locals.success = request.flash('success');
+            result.locals.error   = request.flash('error');
+            next();
+
+        }));
 
     }
+
+    
+    static settings (callback)
+    {
+        if (!Cache.get('cms_settings'))
+        {
+            Settings.forge().fetch()
+            .then ((cms) => {
+                cms = cms.toJSON();
+                Cache.put('cms_settings', cms);
+                return callback(null, cms);
+            })
+            .catch ((err) => {
+                callback(err);
+            });
+        }
+        else 
+        {
+            callback(null, Cache.get('cms_settings'));
+        }
+    }
+
+    static server (callback)
+    {
+        Status.forge().fetch() 
+        .then ((server) => {
+            return callback(null, server.toJSON());
+        })
+        .catch ((err) => {
+            callback(err);
+        });
+    }
+
+    
+
+
+
+
+
+
 }
 module.exports = Variables;
