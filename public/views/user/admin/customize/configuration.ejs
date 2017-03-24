@@ -1,0 +1,56 @@
+<% include ../../header %>
+
+<div class="panel panel-white">
+  <div class="panel-heading">
+    <div class="panel-title text-semibold">
+      <i class="icon-plus-circle2 text-size-base position-left"></i>
+      Configure Your Experience
+    </div>
+  </div>
+  <div class="panel-body">
+            <form method="post" action="/admin/customize/configuration">
+                <h4>Basic Options</h4>
+                <div class="form-group">
+                    <label>Branding</label>
+                    <input name="branding" type="text" class="form-control" value="<%= config.branding %>">
+                </div>
+                <div class="form-group">
+                    <label>Short Branding</label>
+                    <input name="short_branding" type="text" class="form-control" value="<%= config.short_branding %>">
+                </div>
+                <div class="form-group">
+                    <label>Web Folder</label>
+                    <input name="web_folder" type="text" class="form-control" value="<%= config.web_folder %>">
+                </div>
+
+                <h4>Core Functionality</h4>
+                <div class="form-group">
+                    <label>Action Logging</label>
+                    <select name="action_logging" class="form-control">
+                        <% if (config.action_logging == 1) { %>
+                            <option value="1" selected="">Enabled</option>
+                            <option value="2">Disabled</option>
+                        <% } else { %>
+                            <option value="1">Enabled</option>
+                            <option value="2" selected="">Disabled</option>
+                        <% } %>
+                    </select>
+                    <label>Strict Permissions</label>
+                    <select name="strict_permissions" class="form-control">
+                        <% if (config.strict_permissions == 1) { %>
+                            <option value="1" selected="">Enabled</option>
+                            <option value="2">Disabled</option>
+                        <% } else { %>
+                            <option value="1">Enabled</option>
+                            <option value="2" selected="">Disabled</option>
+                        <% } %>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn bg-blue btn-block">
+                    <i class="icon-search4 text-size-base position-left"></i>
+                    Apply Changes
+                </button>
+            </form>
+  </div>
+</div>

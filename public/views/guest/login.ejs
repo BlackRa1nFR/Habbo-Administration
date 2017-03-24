@@ -1,23 +1,71 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <title><%= website.name %>- Welcome Back</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Retro Administration</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+        <link href="/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+        <link href="/css/minified/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="/css/minified/core.min.css" rel="stylesheet" type="text/css">
+        <link href="/css/minified/components.min.css" rel="stylesheet" type="text/css">
+        <link href="/css/minified/colors.min.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="/js/plugins/loaders/pace.min.js"></script>
+        <script type="text/javascript" src="/js/core/libraries/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/core/libraries/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/plugins/loaders/blockui.min.js"></script>
+        <script type="text/javascript" src="/js/plugins/forms/styling/uniform.min.js"></script>
+        <script type="text/javascript" src="/js/core/app.js"></script>
+        <script type="text/javascript" src="/js/pages/login.js"></script>
     </head>
-    <body>
-        <label>Login Bitch</label>
-        <form action="/login" method="post">
-            <input type="text" name="username" placeholder="Username"/>
-            <br>
-            <input type="password" name="password" placeholder="Password">
-            <br>
-            <button type="submit" value="Login">Login </button>
-        </form>
-        <br><br>
-        <label>Join Nigga</label>
-        <form action="/register" method="post" align="center">
-            <input type="text" name="username" placeholder="Username" class="input_register" id="username"/><br>
-            <input type="text" name="mail" placeholder="Email" class="input_register"><br>
-            <input type="password" name="password" placeholder="Password" class="input_register" id="password" /><br>
-            <input type="password" name="password_confirmation" placeholder="Repeat Password" class="input_register" id="retypenpassword" /><br>
-            <input type="submit" class="checkin_habbo_but" value="Register Now!" name="register">
-        </form>
+    <body class="bg-slate-800">
+    <div class="page-container login-container">
+        <div class="page-content">
+            <div class="content-wrapper">
+                <div class="content">
+                  <% if (error.length > 0) { %>
+                    <center>
+                        <div class="alert bg-danger alert-styled-left" style="width:20%;margin-top:2.5%;">
+                            <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+                            <span class="text-semibold"><%= error %></span>
+                        </div>
+                    </center>
+                    <% } else if (success.length > 0) { %>
+                    <center>
+                        <div class="alert bg-success alert-styled-left" style="width:20%;margin-top:2.5%;">
+                            <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</spa></button>
+                            <span class="text-semibold"><%= success %></span>
+                        </div>
+                    </center>
+                    <% };%>
+                    <form method="post">
+                        <div class="panel panel-body login-form">
+                            <div class="text-center">
+                                <div class="icon-object border-warning-400 text-warning-400"><i class="icon-people"></i></div>
+                                <h5 class="content-group-lg">Login to your account  <small class="display-block">Enter your credentials</small></h5>
+                            </div>
+                            <div class="form-group has-feedback has-feedback-left">
+                                <input type="text" class="form-control" placeholder="Username" name="username">
+                                <div class="form-control-feedback">
+                                    <i class="icon-user text-muted"></i>
+                                </div>
+                            </div>
+                            <div class="form-group has-feedback has-feedback-left">
+                                <input type="password" class="form-control" placeholder="Password" name="password">
+                                <div class="form-control-feedback">
+                                    <i class="icon-lock2 text-muted"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn bg-blue btn-block">Login <i class="icon-circle-right2 position-right"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     </body>
+</html>

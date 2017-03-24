@@ -5,30 +5,43 @@ import Passport from 'passport';
 import Hash from 'bcrypt-nodejs';
 import Validator from 'validator';
 import localdb from 'passport-local';
-import User from './database/models/emu/users/user';
+import User from './database/models/admin/users/user';
+import Session from './database/models/admin/users/session';
 
 const Local = localdb.Strategy;
 
-    // Login  
+    // Login
     Passport.use('login', new Local({ passReqToCallback: true }, function(req, username, password, done) {
         User.where('username', username).fetch()
                 .then ((user) => {
-                    
+
                     if (user != null)
                     {
                         user = user.toJSON();
                         if (Hash.compareSync(password, user.password))
                         {
-                            done(null, user);
+                            new Session({ user_id : user.id, ip_address : req.headers['x-forwarded-for'] || req.connection.remoteAddress, created_at : Moment(new Date()).format("YYYY-MM-DD HH:mm:ss") }).save()
+                            .then ((status) => {
+                                Session.where('id', status.toJSON().id).fetch({withRelated : ['user', 'user.group', 'user.habbo']})
+                                    .then ((session) => {
+                                        done(null, session.toJSON());
+                                    })
+                                    .catch ((error) => {
+                                        done(null, null, 'Something went wrong');
+                                    });
+                            })
+                            .catch ((error) => {
+                                done(null, null, 'Something went wrong');
+                            });
                         }
-                        else 
+                        else
                         {
                             done(null, null, 'Failed to authenticate');
                         }
                     }
-                    else 
+                    else
                     {
-                       done(null, null, 'That user does not exist'); 
+                       done(null, null, 'That user does not exist');
                     }
                 })
                 .catch ((error) => {
@@ -41,13 +54,15 @@ const Local = localdb.Strategy;
     });
 
     Passport.deserializeUser(function(user, done) {
-        User.where('id', user.id).fetch()
-            .then ((user) => {
-                done(null, user.toJSON());
-            })
-            .catch ((error) => {
-                done('Something went wrong');
-            });
+        Session.where('id', user.id).fetch({ withRelated : ['user', 'user.group', 'user.habbo'] })
+        .then ((data) => {
+            done(null, data.toJSON());
+        })
+        .catch ((error) => {
+            console.log(error);
+            done('Session has been removed.');
+        });
+
     });
 
 module.exports = Passport;

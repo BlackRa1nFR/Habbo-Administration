@@ -23,7 +23,17 @@ class User extends Database.Model
         return this.belongsTo(Users);
     }
 
+    toJSON ()
+    {
+      let values = Database.Model.prototype.toJSON.apply(this);
+        if (values.permission_group == 0)
+        {
+          values.group.name = 'No Group Found';
+        }
+      return values;
+    }
+
 
 }
 
-module.exports = User;
+module.exports = Database.model('admin_users', User);

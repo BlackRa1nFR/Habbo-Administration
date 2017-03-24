@@ -42,7 +42,7 @@ class Events
                     {
                         event = event.toJSON();
                         result.render('user/cms/events/view', {
-                            page: 'Viewing Event (' + event.title + ')',
+                            page: `Viewing event ${event.title}`,
                             event: event
                         });
                     }
@@ -81,7 +81,7 @@ class Events
             new events(event).save()
                 .then((event) =>
                 {
-                    request.flash('success', "Don't forget to describe your event more!");
+                    request.flash('success', "Don't forget to describe your event more");
                     result.redirect('/hotel/events/view/' + event.toJSON().id);
                 })
                 .catch ((error) =>

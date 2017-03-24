@@ -10,6 +10,11 @@ class Groups extends Database.Model
         return 'admin_permission_groups';
     }
 
+    members ()
+    {
+      return this.hasMany('admin_users', 'permission_group');
+    }
+
 }
 
-module.exports = Groups;
+module.exports = Database.model('admin_permission_groups', Groups);
