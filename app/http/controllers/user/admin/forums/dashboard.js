@@ -1,14 +1,13 @@
-'use strict';
 
-import Error from '../../../../../libraries/error';
-import Category from '../../../../../database/models/admin/forum/category';
+import Error from '../../../../../libraries/error'
+import Category from '../../../../../database/models/admin/forum/category'
 
 class Dashboard
 {
 
     constructor (Website)
     {
-        Website.get('/admin/forums', Dashboard.view);
+        Website.get('/admin/forums', Dashboard.view)
     }
 
     static view (request, result)
@@ -18,11 +17,14 @@ class Dashboard
                 result.render('user/admin/forums/dashboard', {
                     page        : 'Staff Forums',
                     categories  : results.toJSON()
-                });
+                })
             })
             .then ((error) => {
-                new Error('normal', error);
-                result.render('errors/500');
+                if (error != undefined)
+                {
+                    new Error('normal', error)
+                    result.render('errors/500')
+                }
             })
     }
 

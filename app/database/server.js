@@ -1,11 +1,10 @@
-'use strict';
 
-import knex from 'knex';
-import bookshelf from 'bookshelf';
-import config from '../conf/database';
+import knex from 'knex'
+import bookshelf from 'bookshelf'
+import config from '../conf/database'
 
-const Database = bookshelf(knex(config));
-Database.plugin('registry');
+const Database = bookshelf(knex(config))
+Database.plugin('registry')
 
 
-export default Database;
+export default Database

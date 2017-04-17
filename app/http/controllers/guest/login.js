@@ -1,32 +1,31 @@
-'use strict';
 
-import passport from 'passport';
+import passport from 'passport'
 
 class Login
 {
 
     constructor (Website)
     {
-        Website.get('/login', this.get);
+        Website.get('/login', this.get)
         Website.post('/login', passport.authenticate('login', {
             successRedirect     : '/dashboard',
             failureRedirect     : '/login',
             failureFlash        : true,
             badRequestMessage   : 'Daddy No!!'
-        }));
+        }))
     }
 
-    get (request, result) 
+    get (request, result)
     {
         if (!request.user)
         {
-            result.render('guest/login');
+            result.render('guest/login')
         }
-        else 
+        else
         {
-            result.redirect('/dashboard');
+            result.redirect('/dashboard')
         }
     }
 
 }
-module.exports = Login;
+module.exports = Login

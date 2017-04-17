@@ -1,12 +1,10 @@
-'use strict';
-
 
 class Crash
 {
 
     constructor (Website)
     {
-        Website.use(Crash.apply);
+        Website.use(Crash.apply)
     }
 
 
@@ -15,14 +13,14 @@ class Crash
     {
         if (crash)
         {
-            result.render('errors/4');
+            result.render('errors/4')
         }
         else
         {
-            next();
+            next()
         }
 
     }
 
 }
-module.exports = Crash;
+module.exports = Crash

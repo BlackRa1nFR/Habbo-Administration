@@ -1,73 +1,66 @@
-'use strict';
 
-import Async from 'async';
-import Cache from 'memory-cache';
-import Status from '../../database/models/emu/status';
-import Settings from '../../database/models/cms/settings';
-import Navigation from '../../database/models/cms/navigation';
+import Async from 'async'
+import Cache from 'memory-cache'
+import Errors from '../../database/models/admin/errors'
+import Settings from '../../database/models/admin/settings'
 
 class Variables
 {
 
     constructor (Website)
     {
-        Website.use(Variables.apply);
+        Website.use(Variables.apply)
     }
 
-    static apply (request, result, next) 
+    static apply (request, result, next)
     {
-
-        Async.parallel([Variables.settings, Variables.server], ((errors, results) =>
-        {
-            result.locals.href    = request.path.split('/')[1];
-            result.locals.website = results[0];
-            result.locals.server  = results[1];
-            result.locals.success = request.flash('success');
-            result.locals.error   = request.flash('error');
-            next();
-
-        }));
-
-    }
-
-    
-    static settings (callback)
-    {
-        if (!Cache.get('cms_settings'))
-        {
-            Settings.forge().fetch()
-            .then ((cms) => {
-                cms = cms.toJSON();
-                Cache.put('cms_settings', cms);
-                return callback(null, cms);
+      Async.parallel([
+        // Admin Settings
+        function (callback) {
+          if (!Cache.get('admin_settings'))
+          {
+            Settings.forge().where('id', 1).fetch()
+            .then (r => {
+              const settings = r.toJSON()
+              Cache.put('admin_settings', settings)
+              callback(null, settings)
             })
-            .catch ((err) => {
-                callback(err);
-            });
+            .catch (e => {
+              callback(e)
+            })
+          }
+          else
+          {
+            callback(null, Cache.get('admin_settings'))
+          }
+        },
+        // Admin Errors
+        function (callback) {
+          Errors.fetchAll()
+            .then (r => {
+              callback(null, r.toJSON())
+            })
+            .catch (e => {
+              callback(e)
+            })
         }
-        else 
+      ], ((errors, results) => {
+        if (!errors)
         {
-            callback(null, Cache.get('cms_settings'));
+          result.locals.page     = 'Page'
+          result.locals.settings = results[0]
+          result.locals.errors   = results[1]
+          result.locals.success  = request.flash('success')
+          result.locals.error    = request.flash('error')
+          next()
         }
+        else
+        {
+          new Error('normal', errors)
+          result.render('errors/500')
+        }
+      }))
+
     }
-
-    static server (callback)
-    {
-        Status.forge().fetch() 
-        .then ((server) => {
-            return callback(null, server.toJSON());
-        })
-        .catch ((err) => {
-            callback(err);
-        });
-    }
-
-    
-
-
-
-
-
-
 }
-module.exports = Variables;
+module.exports = Variables

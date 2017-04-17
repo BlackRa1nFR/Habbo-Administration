@@ -1,37 +1,52 @@
-'use strict';
 
-import file from 'fs';
-import chalk from 'chalk';
-import Application from '../../application';
+import chalk from 'chalk'
+import Moment from 'moment'
+import Application from '../../application'
+import Errors from '../database/models/admin/errors'
 
 class Error
 {
 
     constructor (type, error)
     {
+        if (error != null)
+        {
+          if (typeof error != 'string')
+            {
+              error.forEach ((err) => {
+                Error.draw(err)
+                Error.write(err)
+              })
+            }
+            else
+            {
+              Error.draw(error)
+              Error.write(error)
+            }
+        }
         if (type == 'fatal')
         {
-            Application.crash();
+            Application.crash()
         }
 
-        Error.draw(error);
-        Error.write(error);
     }
 
     static draw (error)
     {
-        console.log(chalk.bold.red('        ' + error ));
+        console.log(chalk.bold.red('        [ Error ] ' + error ))
     }
 
     static write (error)
     {
-        file.writeFile('../conf/logging/errors.txt', error, ((err) =>
-        {
-            if (err)
-            {
-                Error.draw(error);
-            }
-        }));
+      new Errors({ content : error, created_at : Moment(new Date()).format("YYYY-MM-DD HH:mm:ss") }).save()
+        .then (s => {
+
+        })
+        .catch (e => {
+          Error.draw(error)
+        })
     }
 
 }
+
+module.exports = Error
