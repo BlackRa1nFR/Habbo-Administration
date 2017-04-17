@@ -1,18 +1,158 @@
 <% include ../../header %>
 
-<div class="panel panel-body">
-    <div class="media no-margin stack-media-on-mobile">
-        <div class="media-left media-middle">
-            <i class="icon-lifebuoy icon-3x text-muted no-edge-top"></i>
+<div class="row">
+  <div class="col-lg-2">
+    <div class="panel panel-flat">
+      <div class="panel-heading">
+        <h6 class="panel-title">Navigation<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+        <div class="heading-elements">
+          <ul class="icons-list">
+            <li><a href="#"><i class="icon-wrench3"></i></a></li>
+          </ul>
         </div>
-
-        <div class="media-body">
-            <h6 class="media-heading text-semibold">Need to close up shop?</h6>
-            <span class="text-muted">Put all services in suspension mode.</span>
-        </div>
-
-        <div class="media-right media-middle">
-            <a href="/admin/tools/emergency/actions/shutdown" class="btn btn-primary">Shutdown</a>
-        </div>
+      </div>
+      <div class="list-group no-border no-padding-top">
+        <a data-target="#overview" data-toggle="tab" class="list-group-item"><i class="icon-pencil"></i> Server Overview</a>
+        <a data-target="#maintenance" data-toggle="tab" class="list-group-item"><i class="icon-cog3"></i> Maintenance Mode</a>
+        <a data-target="#shutdown" data-toggle="tab" class="list-group-item"><i class="icon-spinner9"></i> Total Shutdown</a>
+        <div class="list-group-divider"></div>
+        <a href="/admin/errors" class="list-group-item"><i class="icon-warning"></i> <span class="badge bg-danger pull-right"><%= errors.length %></span> Error Reporting</a>
+      </div>
     </div>
-</div>
+    <div class="panel panel-flat">
+      <div class="panel-heading">
+        <h6 class="panel-title">System Build<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+        <div class="heading-elements">
+          <ul class="icons-list">
+            <li><a href="#"><i class="icon-info22"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Variable</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Build</td>
+                <td><%= settings.build %></td>
+              </tr>
+              <tr>
+                <td>Database</td>
+                <td><%= settings.database %>DB</td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="tab-content">
+      <div class="tab-pane has-padding active" id="overview">
+        <div class="panel panel-flat">
+          <div class="panel-body">
+            <div class="row text-center">
+              <h5 class="content-group">
+                <span class="label label-flat label-rounded label-icon border-grey text-grey mr-10">
+                  <i class="icon-statistics"></i>
+                </span>
+
+                <a href="#" class="text-default">
+                  Server Overview
+                </a>
+              </h5>
+            </div>
+            <br>
+            <div class="row text-center">
+              <div class="col-xs-4">
+                <p><i class="icon-chip icon-2x display-inline-block text-info"></i></p>
+                <h5 class="text-semibold no-margin"><%= server.cpus.usage %></h5>
+                <span class="text-muted text-size-small">CPU Usage</span>
+              </div>
+
+              <div class="col-xs-4">
+                <p><i class="icon-terminal icon-2x display-inline-block text-info"></i></p>
+                <h5 class="text-semibold no-margin"><%= server.ram.perc %></h5>
+                <span class="text-muted text-size-small">RAM Usage</span>
+              </div>
+
+              <div class="col-xs-4">
+                <p><i class="icon-server icon-2x display-inline-block text-info"></i></p>
+                <h5 class="text-semibold no-margin">0%</h5>
+                <span class="text-muted text-size-small">HDD Usage</span>
+              </div>
+            </div>
+            <br>
+
+            <div class="row text-center">
+              <div class="col-xs-4">
+                <p><i class="icon-users2 icon-2x display-inline-block text-info"></i></p>
+                <h5 class="text-semibold no-margin"><%= users %></h5>
+                <span class="text-muted text-size-small">Users Online</span>
+              </div>
+
+              <div class="col-xs-4">
+                <p><i class="icon-warning22 icon-2x display-inline-block text-info"></i></p>
+                <h5 class="text-semibold no-margin"><%= errors.length %></h5>
+                <span class="text-muted text-size-small">System Errors</span>
+              </div>
+
+              <div class="col-xs-4">
+                <p><i class="icon-database2 icon-2x display-inline-block text-info"></i></p>
+                <h5 class="text-semibold no-margin"><%= rooms %></h5>
+                <span class="text-muted text-size-small">Active Rooms</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-flat">
+          <div class="panel-body">
+            <h4>Notice</h4>
+            <p>Some statistics cannot be calculated on server's using Windows.</p>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane has-padding" id="maintenance">
+        <div class="panel panel-flat">
+          <div class="panel-body">
+            <div class="row text-center">
+              <h5 class="content-group">
+                <span class="label label-flat label-rounded label-icon border-grey text-grey mr-10">
+                  <i class="icon-arrow-down-right32"></i>
+                </span>
+                <a href="#" class="text-default">
+                  Maintenance Mode
+                </a>
+              </h5>
+            </div>
+            <p>Enabling maintenance mode will disable the emulator, and put the website on lockdown.  A database backup will also be taken as a precaution.</p>
+            <% if (cms.maintenance == 0) { %>
+              <a class="btn btn-danger">Enable Maintenance</a>
+            <% } else { %>
+              <a class="btn btn-primary">Disable Maintenance</a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane has-padding" id="shutdown">
+        <div class="panel panel-flat">
+          <div class="panel-body">
+            <div class="row text-center">
+              <h5 class="content-group">
+                <span class="label label-flat label-rounded label-icon border-grey text-grey mr-10">
+                  <i class="icon-arrow-down-right32"></i>
+                </span>
+                <a href="#" class="text-default">
+                  Total Shutdown
+                </a>
+              </h5>
+            </div>
+            <p>Performing a shutdown will disable the emulator and website.  The Node process will also restart effectively clearing any processes ran by the website and administrative panel.</p>
+            <a class="btn btn-danger">Complete Shutdown</a>
+          </div>
+        </div>
+      </div>

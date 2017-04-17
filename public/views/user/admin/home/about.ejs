@@ -1,0 +1,161 @@
+<% include ../../header %>
+<div class="panel panel-body bg-pink-400" style="background-image: url(http://demo.interface.club/limitless/assets/images/bg.png);">
+  <div class="media no-margin">
+    <div class="media-left media-middle">
+      <i class="icon-wave icon-2x"></i>
+    </div>
+
+    <div class="media-body text-right">
+      <h6 class="media-heading text-semibold">Carpe Noctem</h6>
+      <span class="text-muted">Build <%= settings.build %>, <%= settings.database %> Database</span>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-flat">
+      <div class="panel-heading">
+        <h6 class="panel-title">Build Information</h6>
+      </div>
+      <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Variable</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Build</td>
+                <td><%= settings.build %></td>
+              </tr>
+              <tr>
+                <td>Database</td>
+                <td><%= settings.database %>DB</td>
+              </tr>
+              <tr>
+                <td>Released</td>
+                <td>April 30, 2017</td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="tab-content-bordered content-group">
+      <ul class="nav nav-tabs nav-tabs-highlight nav-lg nav-justified">
+        <li class="active"><a href="#tab-desc" data-toggle="tab">Overview</a></li>
+        <li><a href="#tab-spec" data-toggle="tab">Development Team</a></li>
+        <li><a href="#tab-shipping" data-toggle="tab">Upcoming Changes</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane has-padding active" id="tab-desc">
+          <center><img src="https://i.imgur.com/zZVJft2.png"></center>
+          <p></p>
+          <p>xHabbo is an advanced administration panel created for managing your private servers with ease.</p>
+          <p>Examples of it's raw potential would include the incredibly easy automated installer, customization down to the core-features of server management.</p>
+        </div>
+
+        <div class="tab-pane has-padding" id="tab-spec">
+          <ul class="media-list">
+            <li class="media">
+              <div class="media-left">
+                <img src="https://i.imgur.com/sT0gE5N.jpg" class="img-circle img-xs" alt="">
+              </div>
+
+              <div class="media-body">
+                <a href="#">
+                  Chris Pettyjohn
+                </a>
+
+                <span class="display-block text-muted">Lead Project Developer</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="tab-pane has-padding" id="tab-shipping">
+          <ul>
+            <li>
+              Child Processes for heavy tasks
+                <ul>
+                  <li>Database creation on installer</li>
+                  <li>Database backup system</li>
+                </ul>
+              </li>
+
+          <li>
+            Code Clean up
+            <ul>
+              <li>Installer is definitely looking messy from that late night write up</li>
+              <li>Forums, and general features added while in class could take a look at</li>
+              <li>Move CRUD features into their associated model to keep features respective</li>
+            </ul>
+          </li>
+          <li>
+            1.0 Functionality needs added back in
+            <ul>
+              <li>Strict permission system</li>
+              <li>Plus's permission system supported.</li>
+              <li>Action logging needs to be added into my controllers, be better if I had an event system perhaps?</li>
+            </ul>
+          </li>
+
+          <li>
+            Future Updates
+            <ul>
+              <li>Dual website-administration intergration
+              <li>Perhaps a theme system to make stuff interesting</li>
+            </ul>
+          <li>
+            Interesting Ideas
+            <ul>
+              <li>Multiple-hotel support by using multiple databases and keeping administration-level features on 1 database hotel on a different one.  Simply switch hotel managed by switching port on
+            </ul>
+          </li>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-flat">
+      <div class="panel-heading">
+        <h6 class="panel-title">Configuration Values</h6>
+      </div>
+      <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Variable</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Permissions</td>
+                <td><%= config.permissions_type %></td>
+              </tr>
+              <tr>
+                <td>Action Logging</td>
+                <% if (config.action_logging == 1) { %>
+                  <td>Enabled</td>
+                <% } else { %>
+                  <td>Disabled</td>
+                <% } %>
+              </tr>
+              <tr>
+                <td>Compatibility Mode</td>
+                <td><%= config.website_supported %></td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<iframe width="0" height="0" src="https://www.youtube.com/embed/tvTRZJ-4EyI?autoplay=1" frameborder="0" allowfullscreen></iframe>

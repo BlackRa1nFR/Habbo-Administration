@@ -8,7 +8,7 @@
                 <h6 class="panel-title">Add Category</h6>
             </div>
             <div class="panel-body">
-                <form method="post" action="/admin/forums/actions/category/create">
+                <form method="post" action="/admin/forums/actions/create/category">
                     <div class="form-group">
                         <input name="title" placeholder="Title" type="text" class="form-control">
                     </div>
@@ -42,15 +42,18 @@
                             <div class="content-group">
                                 <h6 class="text-semibold heading-divided"><i class="icon-folder6 position-left"></i> <%= cat.title %> </h6>
                                 <div class="list-group no-border">
-                                    <% cat.latest.forEach((cl) => { %>
-                                        <a href="/admin/forums/post/<%= cl.id %>" class="list-group-item">
-                                            <i class="icon-file-text2"></i> <%= cl.title %>
-                                            <% if (cl.status == 'closed') { %>
-                                             <span class="label label-danger">Closed</span>
-                                             <% } %>
-                                        </a>
-                                    <% }); %>
-
+                                    <% if (cat.latest.length > 0) { %>
+                                        <% cat.latest.forEach((cl) => { %>
+                                            <a href="/admin/forums/post/<%= cl.id %>" class="list-group-item">
+                                                <i class="icon-file-text2"></i> <%= cl.title %>
+                                                <% if (cl.status == 'closed') { %>
+                                                 <span class="label label-danger">Closed</span>
+                                                 <% } %>
+                                            </a>
+                                        <% }); %>
+                                    <% } else { %>
+                                        <p><i class="icon-file-text2" style="padding-right:5px;"></i> No posts yet</p>
+                                    <% } %>
                                     <a href="/admin/forum/<%= cat.id %>" class="list-group-item">
                                         <i class="icon-arrow-right22"></i> Show all posts
                                     </a>

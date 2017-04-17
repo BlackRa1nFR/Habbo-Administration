@@ -1,0 +1,62 @@
+<% include ../../header %>
+
+<div class="panel panel-white">
+  <div class="panel-heading">
+    <div class="panel-title text-semibold">
+      <i class="icon-plus-circle2 text-size-base position-left"></i>
+      Configure Your Experience
+    </div>
+  </div>
+  <div class="panel-body">
+            <form method="post" action="/admin/emu/customize/options">
+                <h4>Basic Options</h4>
+                <div class="form-group">
+                    <label>Welcome Message</label>
+                    <input name="welcome_message" value="<%= config.welcome_message %>" type="text" class="form-control">
+                </div>
+                <h4>Funtionality</h4>
+                <div class="form-group">
+                    <label>Catalog</label>
+                    <select name="catalogue_enabled" class="form-control">
+                        <% if (config.catalogue_enabled == 1) { %>
+                            <option value="1" selected="">Enabled</option>
+                            <option value="2">Disabled</option>
+                        <% } else { %>
+                            <option value="1">Enabled</option>
+                            <option value="2" selected="">Disabled</option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Exchange</label>
+                    <select name="exchange_enabled" class="form-control">
+                        <% if (config.exchange_enabled== 1) { %>
+                            <option value="1" selected="">Enabled</option>
+                            <option value="2">Disabled</option>
+                        <% } else { %>
+                            <option value="1">Enabled</option>
+                            <option value="2" selected="">Disabled</option>
+                        <% } %>
+                    </select>
+                </div>
+                <h4>Game Cycle</h4>
+                <div class="form-group">
+                    <label>Cycle Length In Minutes</label>
+                    <input name="game.rewards.cycle" value="<%= config.game_rewards_cycle %>" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Credits Given</label>
+                    <input name="game.rewards.credits.amount" value="<%= config.game_rewards_credits_amount %>" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Pixels Given</label>
+                    <input name="game.rewards.pixels.amount" value="<%= config.game_rewards_pixels_amount %>" type="text" class="form-control">
+                </div>
+
+                <button type="submit" class="btn bg-blue btn-block">
+                    <i class="icon-search4 text-size-base position-left"></i>
+                    Apply Changes
+                </button>
+            </form>
+  </div>
+</div>

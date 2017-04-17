@@ -1,0 +1,68 @@
+<% include ../../header %>
+<div class="timeline timeline-center">
+						<div class="timeline-container">
+							<div class="timeline-row">
+                <div class="timeline-icon">
+                  <a href="#"><img src="https://www.habbo.com.br/habbo-imaging/avatarimage?headonly=1&figure=<%= post.author.habbo.look %>" style="width:54px;height:64px;"></a>
+                </div>
+								<div class="timeline-time">
+									<a href="#"><%= post.author.username %></a> added a new post
+									<span class="text-muted">Posted <%= post.created_at_fromNow %></span>
+								</div>
+								<div class="panel panel-flat timeline-content">
+									<div class="panel-heading">
+										<h6 class="panel-title"><%= post.title %><a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+										<div class="heading-elements">
+											<ul class="icons-list">
+												<li class="dropdown">
+													<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+														<i class="icon-arrow-down12"></i>
+													</a>
+
+													<ul class="dropdown-menu dropdown-menu-right">
+														<li><a href="#"><i class=" icon-thumbs-up3"></i> Like</a></li>
+														<li><a href="#"><i class=" icon-plus-circle2"></i> Reply</a></li>
+														<li class="divider"></li>
+														<li><a href="#"><i class="icon-spam"></i> Report</a></li>
+													</ul>
+												</li>
+                      </ul>
+                    </div>
+									</div>
+
+									<div class="panel-body">
+                    <%- post.content %>
+
+									<div class="panel-footer panel-footer-transparent"><a class="heading-elements-toggle"><i class="icon-more"></i></a>
+										<div class="heading-elements">
+											<ul class="list-inline list-inline-condensed heading-text">
+												<li><a href="#" class="text-default"><i class="icon-eye4 position-left"></i> 438</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+            </div>
+            <!-- Replies -->
+            <% let count = 0; post.replies.forEach((reply) => { count++; %>
+              <% if (count * 1) { %>
+                <div class="timeline-row post-even">
+              <% } else { %>
+                <div class="timeline-row">
+              <% } %>
+                <div class="timeline-icon">
+                  <a href="#"><img src="https://www.habbo.com.br/habbo-imaging/avatarimage?headonly=1&figure=<%= reply.author.habbo.look %>" style="width:54px;height:64px;"></a>
+                </div>
+								<div class="timeline-time">
+									<a href="#"><%= reply.author.username %></a> replied
+									<span class="text-muted"><%= reply.created_at_fromNow %></span>
+								</div>
+								<div class="panel panel-flat timeline-content">
+									<div class="panel-body">
+                    <%- reply.content %>
+                  </div>
+								</div>
+							</div>
+            </div>
+            <% }); %>
+          </div>

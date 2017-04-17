@@ -17,7 +17,7 @@
 
 </head>
 
-<body data-spy="scroll" data-target=".sidebar-detached" class="has-detached-right">
+<body data-spy="scroll" data-target=".sidebar-detached" class="has-detached-left">
 <div class="navbar navbar-inverse">
     <div class="navbar-header">
         <a class="navbar-brand"><i class="icon icon-fire" style="margin-right:6px;"></i> <%= settings.branding %></a>
@@ -104,10 +104,16 @@
                             <li>
                                 <a href="#"> <i class="icon-magic-wand"></i> <span>  Emulator Management </span> </a>
                                 <ul>
-                                    <li> <a href="/admin/tools/emergency"> Basic Options </a> </li>
-                                    <li> <a href="/admin/tools/backups"> Landing Screen </a> </li>
-                                    <li> <a href="/admin/tools/rcon"> Banned Words </a> </li>
-                                    <li> <a> Youtube Videos </a> </li>
+                                    <li> <a href="/emu/customize/options"> Basic Options </a> </li>
+                                    <li> <a href="/emu/customize/landing"> Landing Screen </a> </li>
+                                    <li> <a href="/emu/customize/wordfilter"> Banned Words </a> </li>
+                                    <li>
+                											<a href="#" class="has-ul">Catalog Editing</a>
+                											<ul>
+                                        <li> <a> Catalog Sections </a> </li>
+                                        <li> <a> Furniture Editor </a> </li>
+                											</ul>
+                										</li>
                                 </ul>
                             </li>
 
@@ -116,9 +122,9 @@
                             <li>
                                 <a href="#"> <i class="icon-user"></i> <span>  User Management </span> </a>
                                 <ul>
-                                    <li> <a href="/"> Quick Overview </a> </li>
-                                    <li> <a href="/hotel/users/lookup"> User Lookup </a> </li>
-                                    <li> <a href="/"> Password Reset </a> </li>
+                                    <li> <a href="/emu/users/overview"> Quick Overview </a> </li>
+                                    <li> <a href="/emu/users/lookup"> User Lookup </a> </li>
+                                    <li> <a href="/emu/users/password"> Password Reset </a> </li>
 
                                 </ul>
                             </li>
@@ -126,7 +132,7 @@
                                 <a href="#"> <i class="icon-lock"></i> <span>  Staff Management </span> </a>
                                 <ul>
                                     <li> <a href="/"> Quick Overview </a> </li>
-                                    <li> <a href="/"> Permission Groups </a> </li>
+                                    <li> <a href="/emu/staff/groups"> Permission Groups </a> </li>
 
                                 </ul>
                             </li>
@@ -136,8 +142,8 @@
                             <li>
                                 <a href="#"> <i class="icon-newspaper"></i> <span>  News Articles </span> </a>
                                 <ul>
-                                    <li> <a href="/"> List Articles </a> </li>
-                                    <li> <a href="/"> Submit New Post </a> </li>
+                                    <li> <a href="/hotel/news"> List Articles </a> </li>
+                                    <li> <a href="/hotel/news/create"> Submit New Post </a> </li>
 
                                 </ul>
                             </li>
@@ -168,7 +174,7 @@
 
                 <div class="breadcrumb-line">
                     <ul class="breadcrumb">
-                        <li><a href="index.html"><i class="icon-home2 position-left"></i> <%= settings.branding %></a></li>
+                        <li><a href="/dashboard"><i class="icon-home2 position-left"></i> <%= settings.branding %></a></li>
                         <li class="active"><%- page; %></li>
                     </ul>
                 </div>
@@ -178,12 +184,12 @@
               <% if (success.length > 0) { %>
                 <div class="alert bg-success alert-styled-left">
 										<button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
-										<span class="text-semibold">Good Job!</span> <%= success %>.
+										<span class="text-semibold">Good Job!</span> <%-success %>.
 								</div>
               <% } else if (error.length > 0) { %>
                 <div class="alert bg-danger alert-styled-left">
 										<button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
-										<span class="text-semibold">Oh snap!</span> <%= error %>.
+										<span class="text-semibold">Oh snap!</span> <%- error %>.
 								</div>
               <% } %>
 

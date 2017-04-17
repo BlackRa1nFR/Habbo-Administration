@@ -1,0 +1,26 @@
+<% include ../../header %>
+
+<div class="row">
+  <div class="col-lg-10">
+    <% articles.forEach(article => { %>
+      <div class="col-lg-4 col-sm-6">
+        <div class="thumbnail">
+          <div class="thumb">
+            <img src="<%= article.image %>">
+            <div class="caption-overflow">
+              <span>
+                <a href="/hotel/news/<%= article.id %>" data-popup="lightbox" class="btn border-white text-white btn-flat btn-icon btn-rounded"><i class="icon-pencil"></i></a>
+                <a href="/hotel/news/delete/<%= article.id %>" class="btn border-white text-white btn-flat btn-icon btn-rounded ml-5"><i class="icon-trash"></i></a>
+              </span>
+            </div>
+          </div>
+          <div class="caption">
+            <h6 class="no-margin"><a href="/hotel/news/<%= article.id %>" class="text-default"><%= article.title %></a>
+            <ul class="list-inline list-inline-separate heading-text" style="padding-top:2%;">
+              <li><i class="icon-user-tie position-left"></i> <%= article.author.username %></li>
+              <li><i class="icon-alarm position-left"></i> <%= article.created_at %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% }) %>

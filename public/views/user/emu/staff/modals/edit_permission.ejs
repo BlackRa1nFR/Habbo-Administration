@@ -1,0 +1,14 @@
+<div id="permission_<%= right.id %>" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title"><%= right.p.permission %></b></h5>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to remove this privilege</p>
+          <a href="/emu/staff/groups/delete/permission/<%= right.id %>" class="btn btn-success">Yes</a>
+          <a class="btn" data-dismiss="modal">No</a>
+        </div>
+      </div>
+    </div>
+  </div>

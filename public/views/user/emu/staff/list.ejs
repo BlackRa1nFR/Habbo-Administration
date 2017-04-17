@@ -1,0 +1,105 @@
+<% include ../../header %>
+
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="panel panel-body">
+        <div class="media no-margin stack-media-on-mobile">
+            <div class="media-left media-middle">
+                <i class="icon-shield-notice icon-3x text-muted no-edge-top"></i>
+            </div>
+
+            <div class="media-body">
+                <h6 class="media-heading text-semibold">Staff Mangement</h6>
+                <span class="text-muted">Proper management helps prevent overstepping boundaries later.</span>
+            </div>
+
+            <div class="media-right media-middle">
+                <a data-target="#create" data-toggle="modal" class="btn btn-primary">Create Group</a>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-flat">
+      <div class="panel-body table">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class="text-center" style="width: 20px;">#</th>
+              <th>Title</th>
+              <th class="text-center" style="width: 20px;">Members</th>
+              <th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% groups.forEach(group => { %>
+              <tr>
+                <td><%= group.id %></td>
+                <td><%= group.name %></td>
+                <% if (group.id > 1) { %>
+                  <td><%= group.members.length %></td>
+                <% } else { %>
+                  <td>∞</td>
+                <% } %>
+                <td class="text-center">
+                  <ul class="icons-list">
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                      <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a data-target="#edit_<%- group.id %>" data-toggle="modal"><i class="icon-pencil"></i> Quick Edit</a></li>
+                        <li><a href="/emu/staff/groups/delete/<%= group.id %>"><i class="icon-trash text-danger"></i> Trash Group</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+              <% include modals/edit_group %>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="create" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title">Group Creator</h5>
+        </div>
+        <div class="modal-body" style="overflow:hidden;">
+          <form class="form-horizontal" method="post" action="/emu/staff/groups/create">
+            <fieldset class="content-user">
+              <div class="form-group has-feedback has-feedback-left">
+                <label>Group Name</label>
+                <input name="name" type="text" class="form-control input-xlg">
+                <div class="form-control-feedback">
+                  <i class="icon-vcard"></i>
+                </div>
+              </div>
+              <div class="form-group has-feedback has-feedback-left">
+                <label>Hidden</label>
+                <select name="hidden" class="form-control input-xlg">
+                  <option id="1" selected="">True</option>
+                  <option id="0">False</option>
+                </select>
+                <div class="form-control-feedback">
+                  <i class="icon-video-camera-slash"></i>
+                </div>
+              </div>
+              <div class="form-group has-feedback has-feedback-left">
+                <label>Description</label>
+                <textarea name="description" class="form-control input-xlg"></textarea>
+                <div class="form-control-feedback">
+                  <i class="icon-book3"></i>
+                </div>
+              </div>
+            </fieldset>
+            <button type="submit" class="btn btn-info" style="float:right;margin-left:15px;"><i class="icon-check"></i> Create</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

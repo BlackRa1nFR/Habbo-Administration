@@ -1,13 +1,53 @@
 <% include ../../header %>
-
-<div class="panel panel-white">
-  <div class="panel-heading">
-    <div class="panel-title text-semibold">
-      <i class="icon-plus-circle2 text-size-base position-left"></i>
-      Configure Your Experience
+<div class="row">
+  <div class="col-lg-2">
+    <div class="panel panel-flat">
+      <div class="panel-heading">
+        <h6 class="panel-title">Information <a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+        <div class="heading-elements">
+          <ul class="icons-list">
+            <li><a href="#"><i class="icon-wrench3"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel-body">
+        <p>These options are only supported on websites utilizing our cms.</p>
+      </div>
+    </div>
+    <div class="panel panel-flat">
+      <div class="panel-heading">
+        <h6 class="panel-title">System Build<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+        <div class="heading-elements">
+          <ul class="icons-list">
+            <li><a href="#"><i class="icon-info22"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Variable</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Build</td>
+                <td><%= settings.build %></td>
+              </tr>
+              <tr>
+                <td>Database</td>
+                <td><%= settings.database %>DB</td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
     </div>
   </div>
-  <div class="panel-body">
+  <div class="col-lg-6">
+    <div class="panel panel-flat">
+      <div class="panel-body">
             <form method="post" action="/cms/customize/register">
                 <h4>User Data</h4>
                 <div class="form-group">
@@ -31,11 +71,9 @@
                     <label>Points</label>
                     <input name="register_points" type="text" class="form-control" value="<%= config.register_points %>">
                 </div>
-
-                <button type="submit" class="btn bg-blue btn-block">
-                    <i class="icon-search4 text-size-base position-left"></i>
-                    Apply Changes
-                </button>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" style="float:right;" value="Update">
+                </div>
             </form>
   </div>
 </div>

@@ -1,0 +1,38 @@
+<div id="member_<%= member.id %>" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title">Editing <b><%= member.username %></b></h5>
+        </div>
+        <div class="modal-body" style="overflow:hidden;">
+          <form class="form-horizontal" method="post" action="/emu/staff/groups/users/update">
+
+            <div class="form-group has-feedback has-feedback-left">
+              <input name="id" value="<%= member.id %>" type="hidden">
+              <input name="user" value="<%= member.username %>" type="hidden">
+              <input name="username" value="<%= member.username %>" type="text" class="form-control input-xlg" disabled="">
+              <div class="form-control-feedback">
+                <i class="icon-vcard"></i>
+              </div>
+            </div>
+            <div class="form-group has-feedback has-feedback-left">
+              <select name="rank" class="form-control input-xlg">
+                <% groups.forEach(g => { %>
+                  <% if (g.id == group.id) { %>
+                    <option value="<%= g.id %>" selected=""><%= g.name %></option>
+                  <% } else { %>
+                    <option value="<%= g.id %>"><%= g.name %></option>
+                  <% } %>
+                <% }); %>
+              </select>
+              <div class="form-control-feedback">
+                <i class="icon-crown"></i>
+              </div>
+            </div>
+            <a href="/emu/users/view/<%= member.id %>" class="btn" style="float:right"><i class="icon-cog52"></i> View User</a>
+            <button type="submit" class="btn btn-info" style="float:right;margin-left:15px;"><i class="icon-check"></i> Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

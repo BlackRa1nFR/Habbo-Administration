@@ -1,0 +1,342 @@
+<% include ../../header %>
+<div class="sidebar-detached">
+    <div class="sidebar sidebar-default sidebar-separate">
+        <div class="sidebar-content">
+
+            <div class="content-group">
+                <div class="panel-body bg-indigo-400 border-radius-top text-center" style="background-image: url(http://demo.interface.club/limitless/assets/images/bg.png); background-size: contain;">
+                    <div class="content-group-sm">
+                        <h6 class="text-semibold no-margin-bottom">
+												<%= player.username %>
+											</h6>
+
+                        <span class="display-block"><%= player.rank.name %></span>
+                    </div>
+
+                    <a class="display-inline-block content-group-sm">
+                      <img src="https://www.habbo.com.br/habbo-imaging/avatarimage?headonly=1&figure=<%= player.look %>" class="img-circle img-responsive" style="width: 54px; height:54px;">
+                    </a>
+                </div>
+
+                <div class="panel no-border-top no-border-radius-top">
+                    <ul class="navigation">
+                        <li class="navigation-header">Navigation</li>
+                        <li class="active"><a href="#overview" data-toggle="tab"><i class="icon-clipboard"></i> Overview</a></li>
+                        <li><a href="#duplicates" data-toggle="tab"><i class="icon-warning22"></i> Duplicate Accounts</a></li>
+                        <li><a href="#badges" data-toggle="tab"><i class="icon-medal-star"></i> Owned Badges</a></li>
+                        <li><a href="#inventory" data-toggle="tab"><i class="icon-basket"></i> User Inventory</a></li>
+                        <li><a href="#rooms" data-toggle="tab"><i class="icon-key"></i> Rooms</a></li>
+                        <li><a href="#staff" data-toggle="tab"><i class="icon-hammer"></i> Staff Actions</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-detached">
+  <div class="tab-content row col-md-12">
+
+    <!-- Overview -->
+    <div class="tab-pane fade active in" id="overview">
+      <div class="navbar navbar-default navbar-component navbar-xs">
+        <ul class="nav navbar-nav visible-xs-block">
+          <li class="full-width text-center"><a data-toggle="collapse" data-target="#navbar-filter"><i class="icon-menu7"></i></a></li>
+        </ul>
+        <div class="navbar-collapse collapse" id="navbar-filter">
+          <ul class="nav navbar-nav">
+            <li class="active"><a data-target="#overview_basic" data-toggle="tab"><i class="icon-quill2 position-left"></i> Basic </a></li>
+            <li><a data-target="#overview_currency" data-toggle="tab"><i class="icon-cash3 position-left"></i> Currency </a></li>
+            <li><a data-target="#overview_profile" data-toggle="tab"><i class="icon-theater position-left"></i> Profile </a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-body">
+          <h5 class="content-group">
+            <span class="label label-flat label-rounded label-icon border-grey text-grey mr-10"> <i class="icon-users"></i> </span>
+            User Overview
+          </h5>
+        </div>
+        <div class="tab-content">
+          <div class="tab-pane fade active in" id="overview_basic">
+            <div class="panel-body">
+              <form class="form-horizontal" method="post" action="/emu/users/update">
+                <input name="id" value="<%= player.id %>" type="hidden">
+                <fieldset class="content-user">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>ID</label>
+                        <input value="<%= player.id %>" type="text" class="form-control input-xlg" disabled="">
+                        <div class="form-control-feedback">
+                          <i class="icon-user"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-7">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>Username</label>
+                        <input name="username" value="<%= player.username %>" type="text" class="form-control input-xlg">
+                        <div class="form-control-feedback">
+                          <i class="icon-vcard"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>Join Date</label>
+                        <input value="<%= player.account_created %>" type="text" class="form-control input-xlg" disabled="">
+                        <div class="form-control-feedback">
+                          <i class="icon-calendar52"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-7">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>Email</label>
+                        <input name="mail" value="<%= player.mail %>" type="text" class="form-control input-xlg">
+                        <div class="form-control-feedback">
+                          <i class="icon-mail5"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>Last Online</label>
+                        <input value="<%= player.last_online %>" type="text" class="form-control input-xlg" disabled="">
+                        <div class="form-control-feedback">
+                          <i class="icon-pulse2"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-7">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>Motto</label>
+                        <input name="motto" value="<%= player.motto %>" type="text" class="form-control input-xlg">
+                        <div class="form-control-feedback">
+                          <i class="icon-pencil"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <button type="submit" class="btn btn-info" style="float:right;margin-left:15px;"><i class="icon-check"></i> Save</button>
+              </form>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="overview_currency">
+            <div class="panel-body">
+              <form class="form-horizontal" method="post" action="/emu/users/update">
+                <input name="id" value="<%= player.id %>" type="hidden">
+                <fieldset class="content-user">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>Credits</label>
+                        <input name="credits" value="<%= player.credits %>" type="text" class="form-control input-xlg">
+                        <div class="form-control-feedback">
+                          <i class="icon-vcard"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>Pixels</label>
+                        <input name="activity_points" value="<%= player.activity_points %>" type="text" class="form-control input-xlg">
+                        <div class="form-control-feedback">
+                          <i class="icon-vcard"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>VIP Points</label>
+                        <input name="vip_points" value="<%= player.vip_points %>" type="text" class="form-control input-xlg">
+                        <div class="form-control-feedback">
+                          <i class="icon-vcard"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>GOTW Points</label>
+                        <input name="gotw_points" value="<%= player.gotw_points %>" type="text" class="form-control input-xlg">
+                        <div class="form-control-feedback">
+                          <i class="icon-vcard"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <button type="submit" class="btn btn-info" style="float:right;margin-left:15px;"><i class="icon-check"></i> Save</button>
+              </form>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="overview_profile">
+            <div class="panel-body">
+              <form class="form-horizontal" method="post" action="/emu/users/update">
+                <input name="id" value="<%= player.id %>" type="hidden">
+                <fieldset class="content-user">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>Youtube</label>
+                        <input name="youtube" value="<%= player.youtube %>" type="text" class="form-control input-xlg">
+                        <div class="form-control-feedback">
+                          <i class="icon-vcard"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>About Me</label>
+                        <input name="about" value="<%= player.about %>" type="text" class="form-control input-xlg">
+                        <div class="form-control-feedback">
+                          <i class="icon-vcard"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>Skype</label>
+                        <input name="skype" value="<%= player.skype %>" type="text" class="form-control input-xlg">
+                        <div class="form-control-feedback">
+                          <i class="icon-vcard"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>Snog</label>
+                        <input name="snog" value="<%= player.snog %>" type="text" class="form-control input-xlg">
+                        <div class="form-control-feedback">
+                          <i class="icon-vcard"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>Twitter</label>
+                        <input name="twitter" value="<%= player.twitter %>" type="text" class="form-control input-xlg">
+                        <div class="form-control-feedback">
+                          <i class="icon-vcard"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>KIK</label>
+                        <input name="kik" value="<%= player.kik %>" type="text" class="form-control input-xlg">
+                        <div class="form-control-feedback">
+                          <i class="icon-vcard"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                      <div class="form-group has-feedback has-feedback-left">
+                        <label>Snapchat</label>
+                        <input name="gotw_points" value="<%= player.snapchat %>" type="text" class="form-control input-xlg">
+                        <div class="form-control-feedback">
+                          <i class="icon-vcard"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <button type="submit" class="btn btn-info" style="float:right;margin-left:15px;"><i class="icon-check"></i> Save</button>
+              </form>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane fade" id="duplicates">
+    <div class="panel panel-body">
+      <p>Duplicate accounts has been disabled.</p>
+    </div>
+  </div>
+
+  <!-- Badges -->
+  <div class="tab-pane fade" id="badges">
+    <div class="panel">
+      <div class="panel-body">
+        <h5 class="content-group">
+          <span class="label label-flat label-rounded label-icon border-grey text-grey mr-10"> <i class="icon-star-full2"></i> </span>
+          User Badges
+        </h5>
+        <ul class="list-inline list-inline-condensed no-margin-bottom mt-15">
+          <% player.badges.forEach(b => { %>
+            <li><a data-target="#badge_<%= b.id %>" data-toggle="modal" data-popup="tooltip" data-original-title="<%= b.badge_id %>"><img src="<%= settings.swf_folder %>/c_images/album1584/<%= b.badge_id %>.gif" class="img-circle img-s" alt=""></a></li>
+            <% include modals/edit_badge %>
+          <% }) %>
+          <li><a data-target="#add_badge" data-toggle="modal" data-popup="tooltip" data-original-title="Add Badge"><span class="btn btn-xs btn-icon btn-flat btn-rounded border-grey text-grey"><i class="icon-plus22"></i></span></li></a>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Staff Actions -->
+  <div class="tab-pane fade" id="staff">
+    <div class="panel">
+      <div class="panel-body">
+        <h5 class="content-group">
+          <span class="label label-flat label-rounded label-icon border-grey text-grey mr-10"> <i class="icon-crown"></i> </span>
+          Staff Actions
+        </h5>
+        <a href="/emu/users/delete/<%= player.id %>" class="btn btn-danger">Delete User</a>
+         or
+         <a class="btn btn-warning">Ban Account</a>
+         
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+<div id="add_badge" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Badge To Invetory</h5>
+      </div>
+      <div class="modal-body" style="overflow:hidden;padding-top:10%">
+        <form class="form-horizontal" method="post" action="/emu/users/actions/badge/create">
+          <div class="form-group has-feedback has-feedback-left">
+            <input name="user_id" value="<%= player.id %>" type="hidden">
+            <input name="badge_id" placeholder="Badge ID" type="text" class="form-control input-xlg">
+            <div class="form-control-feedback">
+              <i class="icon-medal"></i>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-info" style="float:right;margin-left:15px;"><i class="icon-check"></i> Add Badge</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

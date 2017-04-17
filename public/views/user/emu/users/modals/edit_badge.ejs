@@ -1,0 +1,13 @@
+<div id="badge_<%= b.id %>" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title"><%= b.badge_id %></h5>
+        </div>
+        <div class="modal-body">
+          <a href="/emu/users/actions/badge/delete/<%= b.id %>" class="btn btn-success">Remove</a>
+          <a data-dismiss="modal" class="btn">Keep</a>
+        </div>
+      </div>
+    </div>
+  </div>

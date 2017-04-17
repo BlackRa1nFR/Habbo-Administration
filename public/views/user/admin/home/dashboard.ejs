@@ -1,24 +1,42 @@
 <% include ../../header %>
+<div class="row">
+  <div class="col-md-12">
+    <% if (errors.length > 0) { %>
+      <div class="alert bg-danger alert-styled-left">
+          <span class="text-semibold">Oh snap!</span> <%= errors.length %> errors have occurred in the system and need <b><a href="/admin/errors">reviewed</a></b>
+      </div>
+    <% } %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="alert bg-info alert-styled-left">
+        <span class="text-semibold">Reminder!</span> You have <b><a href="/todo">unfinished</a> tasks to do</b>
+    </div>
+  </div>
+</div>
+
+
 
 <div class="row">
     <div class="col-md-4">
         <div class="panel">
             <div class="panel-body text-center">
                 <div class="icon-object border-success-400 text-success"><i class="icon-book"></i></div>
-                <h5 class="text-semibold">Knowledge Base</h5>
-                <p class="mb-15">Discover quick information about this adminstration panel, and its potential.  Articles ranging from quick help, to full changelogs.</p>
-                <a href="#" class="btn bg-success-400">Browse articles</a>
+                <h5 class="text-semibold">Discussion Area</h5>
+                <p class="mb-15">Come here to openly discuss and plan out ongoing events, or things in the future for the sake of your website.</p>
+                <a href="/admin/forums" class="btn bg-success-400">Browse posts</a>
             </div>
         </div>
     </div>
 
     <div class="col-md-4">
         <div class="panel">
-            <div class="panel-body text-center">
-                <div class="icon-object border-warning-400 text-warning"><i class="icon-lifebuoy"></i></div>
-                <h5 class="text-semibold">Discussion Area</h5>
-                <p class="mb-15">Come here to openly discuss and plan out ongoing events, or things in the future for the sake of your website.</p>
-                <a href="#" class="btn bg-warning-400">Open thread</a>
+            <div class="panel-body text-center" style="padding-bottom:26px;">
+                <div class="icon-object border-warning-400 text-warning"><i class="icon-fire"></i></div>
+                <h5 class="text-semibold">xHabbo Information</h5>
+                <p class="mb-15">This panel is a free open-source release from LeChris.  Please be sure to report bugs if found and ensure you're updated.</p>
+                <a href="/about" class="btn bg-warning-400">Read More</a>
             </div>
         </div>
     </div>
@@ -29,7 +47,7 @@
                 <div class="icon-object border-blue text-blue"><i class="icon-reading"></i></div>
                 <h5 class="text-semibold">Task Manager</h5>
                 <p class="mb-15">An easy way to take control of your administration team, and to help guide your members in the right direction.</p>
-                <a href="#" class="btn bg-blue">Browse tasks</a>
+                <a href="/admin/tasks" class="btn bg-blue">Browse tasks</a>
             </div>
         </div>
     </div>
@@ -37,81 +55,74 @@
 
 <div class="row">
     <div class="col-md-4">
+      <div class="panel panel-flat">
+        <div class="panel-heading">
+          <h6 class="panel-title">Server Status<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+
+          <div class="heading-elements">
+            <div class="heading-text">
+              <span class="status-mark border-success position-left"></span>
+              Operational
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <ul class="progress-list">
+            <li>
+              <label>CPU usage <span>50%</span></label>
+              <div data-popup="tooltip" data-original-title="20 Processes running" class="progress progress-xxs">
+                <div class="progress-bar progress-bar-info" style="width: 50%">
+                  <span class="sr-only">50% Complete</span>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <label>RAM usage <span>70%</span></label>
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-danger" style="width: 70%">
+                  <span class="sr-only">70% Complete</span>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <label>Disc space <span>80%</span></label>
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-success" style="width: 80%">
+                  <span class="sr-only">80% Complete</span>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
         <div class="panel panel-flat">
             <div class="panel-heading">
-                <h6 class="panel-title"><i class="icon-cog3 position-left"></i> Development Log</h6>
+                <h6 class="panel-title"><i class="icon-cog3 position-left"></i> My Notes</h6>
             </div>
             <div class="panel-body">
-                <div class="panel-group panel-group-control panel-group-control-right">
-                    <div class="panel panel-white">
-                        <div class="panel-heading">
-                            <h6 class="panel-title">
-                                <a class="collapsed" data-toggle="collapse" href="#introduction" aria-expanded="false">
-                                    <i class="icon-help position-left text-slate"></i> Administration in a new perspective
-                                </a>
-                            </h6>
-                        </div>
-                        <div id="introduction" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                            <div class="panel-body">
-                                Rather than providing users with a boring and quite dull experience, we wanted to change the game. <br> <br>
-                                Administration should be important, easy, but also fun.  Our mission was to fulfill all of those desires, and also do more! <br> <br>
-                                With features such as our task managemer, discussion area, and full-scale management wrapped in a beautiful package; It's impossible not to fall in love.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-group panel-group-control panel-group-control-right">
-                    <div class="panel panel-white">
-                        <div class="panel-heading">
-                            <h6 class="panel-title">
-                                <a class="collapsed" data-toggle="collapse" href="#upcomingChanges" aria-expanded="false">
-                                    <i class="icon-watch2 position-left text-slate"></i> Upcoming Changes
-                                </a>
-                            </h6>
-                        </div>
-                        <div id="upcomingChanges" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                            <div class="panel-body">
-                                <ul>
-                                    <li>Create new designs
-                                        <ul>
-                                            <li>Dashboard completed</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-group panel-group-control panel-group-control-right">
-                    <div class="panel panel-white">
-                        <div class="panel-heading">
-                            <h6 class="panel-title">
-                                <a class="collapsed" data-toggle="collapse" href="#developmentCrew" aria-expanded="false">
-                                    <i class="icon-user-tie position-left text-slate"></i> Our Development Crew
-                                </a>
-                            </h6>
-                        </div>
-                        <div id="developmentCrew" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                            <div class="panel-body">
-                                This project has been planned, and developed by the following contributors <br> <br>
-                                <b>LeChris</b> - Head Developer <br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <% if (user.notes.length > 0) { %>
+                <% user.notes.forEach(note => { %>
+                  <b><%= note.title %></b> <br> <%= note.content %> <hr>
+                <% }) %>
+              <% } %>
+              <p>Want to get something off your chest, <a data-target="#note" data-toggle="modal" class="btn">Take a note</a></p>
             </div>
         </div>
     </div>
     <div class="col-lg-4">
         <div class="col-xs-6">
-            <button class="btn bg-primary btn-block btn-float btn-float-lg" type="button"><i class="icon-stats-bars"></i> <span>Hotel Statistics</span></button>
-            <button class="btn bg-info btn-block btn-float btn-float-lg" type="button"><i class="icon-book"></i> <span>Event Planner</span></button>
-            <button class="btn bg-success btn-block btn-float btn-float-lg" type="button"><i class="icon-notification2"></i> <span>Emergency Services</span></button>
+            <a href="/hotel/overview" class="btn bg-primary btn-block btn-float btn-float-lg"><i class="icon-stats-bars"></i> <span>Hotel Statistics</span></a>
+            <a href="/hotel/events/view" class="btn bg-info btn-block btn-float btn-float-lg"><i class="icon-book"></i> <span>Event Planner</span></a>
+            <a href="/admin/tools/emergency" class="btn bg-success btn-block btn-float btn-float-lg"><i class="icon-notification2"></i> <span>Emergency</span></a>
         </div>
         <div class="col-xs-6">
-            <button class="btn bg-success btn-block btn-float btn-float-lg" type="button"><i class="icon-question4"></i> <span>Support Area</span></button>
-            <button class="btn bg-primary btn-block btn-float btn-float-lg" onclick="location.href='/bans/view'"  type="button"><i class="icon-warning"></i> <span>Ban Management</span></button>
-            <button class="btn bg-info btn-block btn-float btn-float-lg" onclick="location.href='/system/backups'" type="button"><i class="icon-database"></i> <span>Database Backups</span></button>
+            <a href="/admin/forums" class="btn bg-success btn-block btn-float btn-float-lg"><i class="icon-question4"></i> <span>Staff Forums</span></a>
+            <a href="/emu/bans/overview" class="btn bg-primary btn-block btn-float btn-float-lg"><i class="icon-warning"></i> <span>Ban Management</span></a>
+            <a href="/admin/tools/backups" class="btn bg-info btn-block btn-float btn-float-lg"><i class="icon-database"></i> <span>Database Backups</span></a>
         </div>
     </div>
     <div class="col-lg-4">
@@ -119,15 +130,50 @@
             <div class="panel-body">
                 <p>Recently Active</p> <br>
                 <ul class="media-list">
+                  <% active.forEach(a => { %>
                     <li class="media">
-                        <a href="#" class="media-left"><img src="https://www.habbo.com.br/habbo-imaging/avatarimage?headonly=1&figure=<%= user.habbo.look %>" style="height:54px;width:54px;"></a>
+                        <a href="/profile/<%= user.username %>" class="media-left"><img src="https://www.habbo.com.br/habbo-imaging/avatarimage?headonly=1&figure=<%= a.habbo.look %>" style="height:54px;width:54px;"></a>
                         <div class="media-body">
-                            <a href="#" class="media-heading text-semibold">Chris P</a>
-                            <span class="text-size-mini text-muted display-block">Development Crew</span>
+                            <a href="/profile/<%= user.username %>" class="media-heading text-semibold"><%= a.username %> <small class="text-size-mini text-muted"><%= a.last_active %></small></a>
+                            <span class="text-size-mini text-muted display-block"><%= a.group.name %></span>
                         </div>
                         <div class="media-right media-middle">
                             <span class="status-mark bg-success"></span>
                         </div>
                     </li>
+                  <% }) %>
                 </ul>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="note" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">New Note</h5>
+            </div>
+            <div class="modal-body" style="overflow:hidden;">
+              <form class="form-horizontal" method="post" action="/notes/create">
+
+                <div class="form-group has-feedback has-feedback-left">
+                  <input name="title" type="text" class="form-control input-xlg" placeholder="Title">
+                  <div class="form-control-feedback">
+                    <i class="icon-file-text"></i>
+                  </div>
+                </div>
+                <div class="form-group has-feedback has-feedback-left">
+                  <textarea name="content" class="form-control input-xlg"></textarea>
+                  <div class="form-control-feedback">
+                    <i class="icon-book"></i>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-info" style="float:right;margin-left:15px;"><i class="icon-check"></i> Save</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>

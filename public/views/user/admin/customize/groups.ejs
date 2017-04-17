@@ -83,7 +83,7 @@
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h5 class="modal-title"><i class="icon-menu7"></i> &nbsp;Group Creator</b></h5>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="overflow:hidden;">
               <form class="form-horizontal" method="post" action="/admin/customize/groups/actions/create">
                 <fieldset class="content-group">
                   <legend class="text-bold">Basic Information</legend>
@@ -102,14 +102,10 @@
                 </fieldset>
                 <fieldset class="content-group">
                   <legend class="text-bold">Assigned Tokens</legend>
-
                 </fieldset>
-              </div>
-              <div class="modal-footer">
-                <button class="btn btn-link" data-dismiss="modal"><i class="icon-cross"></i> Close</button>
-                <button class="btn btn-primary"><i class="icon-check"></i> Save</button>
-              </div>
-            </form>
+                <button class="btn btn-primary"><i class="icon-check" style="float:right;"></i> Save</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
