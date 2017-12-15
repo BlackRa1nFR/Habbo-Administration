@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= website.name %> - <%=website.page %></title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/core.css" rel="stylesheet" type="text/css" />
+    <link href="/css/components.css" rel="stylesheet" type="text/css" />
+    <link href="/css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="/css/pages.css" rel="stylesheet" type="text/css" />
+    <link href="/css/menu.css" rel="stylesheet" type="text/css" />
+    <link href="/css/responsive.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <header id="topnav">
+    <div class="topbar-main">
+      <div class="container">
+        <div class="logo">
+          <a href="/dashboard" class="logo"><span>xHabbo V</span></a>
+        </div>
+        <div class="menu-extras">
+          <ul class="nav navbar-nav navbar-right pull-right">
+              <li class="dropdown navbar-c-items">
+                  <a class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true">
+                    <img src="<%= user.avatar %>" class="img-circle">
+                  </a>
+                  <ul class="dropdown-menu">
+                      <li><a href="/profile/<%= user.username %>"><i class="ti-user text-custom m-r-10"></i> Profile</a>
+                      </li>
+                      <li><a href="javascript:void(0)"><i class="ti-settings text-custom m-r-10"></i> Settings</a>
+                      </li>
+                      <li><a href="/lock"><i class="ti-lock text-custom m-r-10"></i> Lock screen</a>
+                      </li>
+                      <li class="divider"></li>
+                      <li><a href="/logout"><i class="ti-power-off text-danger m-r-10"></i> Logout</a>
+                      </li>
+                  </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+        <div class="navbar-custom">
+            <div class="container">
+                <div id="navigation">
+                  <ul class="navigation-menu">
+
+                    <li>
+                      <a href="/dashboard"> <i class="fa fa-home"></i> Dashboard </a>
+                    </li>
+
+                    <li class="has-submenu">
+                      <a href="#"> <i class="fa fa-sitemap"></i> Administrator Options</a>
+                      <ul class="submenu megamenu">
+                        <li>
+                          <ul>
+                              <li> <span>Accounts</span> </li>
+                              <li> <a href="/admin/accounts">Users Table</a> </li>
+                              <li> <a href="/admin/accounts/create">Add New User</a> </li>
+                              <li> <a href="/admin/accounts/locked">Locked Accounts</a> </li>
+                              <li> <a href="/admin/accounts/pending">Pending Actions</a> </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <ul>
+                              <li>
+                                  <span>Permissions</span>
+                              </li>
+                              <li><a href="/admin/groups">Account Groups</a>
+                              </li>
+                              <li><a href="/admin/groups/create">Add New Group</a>
+                              </li>
+                              <li><a href="">Security Tokens</a>
+                              </li>
+                              <li><a href="">Configure Authentication</a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                        <ul>
+                            <li>
+                                <span>General</span>
+                            </li>
+                            <li><a href="/admin/settings">Customization</a>
+                            </li>
+                            <li><a href="/admin/settings/email">Email Management</a>
+                            </li>
+                            <li><a href="/admin/errord">Error Reporting <% if (website.errors.length > 0) { %> <label class="label label-danger"><%= website.errors.length %></label> <% } %></a>
+                            </li>
+                            <li><a href="/admin/updates">Check For Updates</a>
+                            </li>
+                        </ul>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="has-submenu">
+                  <a href="#"> <i class="fa fa-globe"></i> Hotel Management</a>
+                  <ul class="submenu megamenu">
+                    <li>
+                      <ul>
+                          <li> <span>Users</span> </li>
+                          <li> <a href="/hotel/users">Users Table</a> </li>
+                          <li> <a href="/hotel/users/banned">Banned Users</a> </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="has-submenu">
+                  <a href="#"> <i class="fa fa-leaf"></i> Additional Tools</a>
+                  <ul class="submenu megamenu">
+                    <li>
+                      <ul>
+                          <li> <span>News Management</span> </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <% if (!page) { %>
+                <h4 class="page-title"><%= website.page %></h4>
+              <% } else { %>
+                <h4 class="page-title"><%= page %></h4>
+              <% } %>
+            </div>
+          </div>
