@@ -152,12 +152,45 @@ export default class User extends Database.Model
 
     }
 
+    static doReset (email)
+    {
+
+      return new Promise((r, e) => {
+
+        User.where('email', email).fetch()
+          .then (u => {
+
+            if (u)
+            {
+              Reset.addNew(u.toJSON().id)
+                .then (k => {
+                  r(true)
+                })
+                .catch (er => {
+                  e(er)
+                })
+            }
+            else
+            {
+              r(false)
+            }
+
+          })
+          .catch (er => {
+            e(er)
+          })
+
+
+      })
+    }
+
 
 
     toJSON ()
     {
-     const values            = Database.Model.prototype.toJSON.apply(this);
-     values.account_length    = Moment(values.created_at).fromNow()
+     const values            = Database.Model.prototype.toJSON.apply(this)
+     values.last_active      = Moment(values.last_ctive).fromNow()
+     values.account_length   = Moment(values.created_at).fromNow()
 
      return values;
    }

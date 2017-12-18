@@ -1,3 +1,6 @@
+import Error from '../../../modules/error'
+import User from '../../../database/models/admin/users/user'
+
 export default class Reset
 {
 
@@ -14,12 +17,19 @@ export default class Reset
 
   static do (req, res)
   {
-    res.render('session/guest/login', {
-      message : {
-        type : 'success',
-        text : `If the email you specified exists in our system, we've sent a password reset link to it.`
-      }
-    })
+
+    User.doReset(req.body.email)
+      .then (e => {
+        req.flash('success', 'If the email you specified exists in our system, we\'ve sent a password reset link to it.')
+        res.redirect('/login')
+      })
+      .catch (e => {
+        new Error('Admin - Guest Password Reset ',e, req, res, 'normal')
+      })
+
+
+    req.flash('success', 'If the email you specified exists in our system, we\'ve sent a password reset link to it.')
+    res.redirect('/login')
   }
 
 }

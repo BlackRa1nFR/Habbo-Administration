@@ -1,3 +1,4 @@
+import Moment from 'moment'
 import Error from '../../../../modules/error'
 import User from '../../../../database/models/admin/users/user'
 
@@ -16,6 +17,10 @@ export default class Refresh
     {
       User.where('id', req.session.auth.user).fetch({ withRelated : ['group'] })
         .then (u => {
+          
+          u.set('last_active', Moment().format("YYYY-MM-DD HH:mm:ss"))
+          u.save()
+
           u = u.toJSON()
           req.session.auth.data = u
           res.locals.user = u

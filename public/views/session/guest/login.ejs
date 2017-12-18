@@ -8,9 +8,13 @@
         <link href="/css/font-awesome.css" rel="stylesheet">
     </head>
     <body class="login">
-      <% if (message) { %>
-        <ul class="notice <%= message.type %>">
-          <li><%= message.text %></li>
+      <% if (flash.error) { %>
+        <ul class="notice errors %>">
+          <li><%= flash.error %></li>
+        </ul>
+      <% } else if (flash.success) { %>
+        <ul class="notice success">
+          <li><%= flash.success %></li>
         </ul>
       <% } %>
       <img class="logo" src="/img/xhabbo.png">

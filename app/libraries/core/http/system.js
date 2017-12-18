@@ -2,7 +2,7 @@ import File from 'glob'
 import Async from 'async'
 import Express from 'express'
 import Body from 'body-parser'
-import Flash from 'connect-flash'
+import Flash from 'req-flash'
 import Redis from 'connect-redis'
 import Messages from '../messages'
 import Cookies from 'cookie-parser'
@@ -26,7 +26,7 @@ export default class System
         http.use(Cookies())
         const redis = new Redis(Session)
         http.use(Session({ store : new redis, saveUninitialized: true, resave: true, secret: 'it*SFVse', ttl : 3600, cookie: { maxAge: 3600000 * 24 * 7 } }))
-        http.use(Flash())
+        http.use(Flash({ locals: 'flash' }))
         http.set('views', `${homeDirectory}/public/views`)
         http.set('view engine', 'ejs')
         cb()

@@ -9,12 +9,8 @@ export default class Logout
   static do (req, res)
   {
     req.session.auth = null
-    res.render('session/guest/login', {
-      message : {
-        type : 'success',
-        text : 'You have been logged out'
-      }
-    })
+    req.flash('success', 'You have been logged out')
+    res.redirect('/login')
   }
 
 }

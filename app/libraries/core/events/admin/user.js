@@ -1,3 +1,6 @@
+import EJS from 'ejs'
+import Mail from '../../modules/email'
+
 export default class User
 {
 
@@ -8,11 +11,12 @@ export default class User
     // Send email to new email
   }
 
-  static PasswordChangeRequested (id)
+  static PasswordChangeRequested (username, email, link)
   {
-    return;
 
-    // Send password change email
+    EJS.renderFile(`${homeDirectory}/public/views/common/email/accounts/password_reset.ejs`, { user : { username : username, email : email }, link : link }, ((er, da) => {
+      new Mail(email, da)
+    }))
   }
 
   static SuspensionFiled (id)
@@ -20,6 +24,12 @@ export default class User
     return;
 
     // Send email concerning suspension
+  }
+
+  static AccountWasMade (id, email)
+  {
+    return;
+    // Send welcome email
   }
 
 

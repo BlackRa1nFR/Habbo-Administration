@@ -13,7 +13,6 @@
                             <tr>
                                 <th> <span class="headerText"> Username </span> </th>
                                 <th> <span class="headerText"> Status </span> </th>
-                                <th> <span class="headerText"> Actions Completed </span> </th>
                                 <th> <span class="headerText"> Last Active </span> </th>
                                 <th> <span class="headerText"> Manage </span> </th>
                             </tr>
@@ -40,8 +39,7 @@
                                     <div class="status-spinner-bg"></div>
                                 </td>
                                 <td> <%= u.status %> </td>
-                                <td class="ip"> 0 </td>
-                                <td> Just Now </td>
+                                <td> <%= u.last_active %> </td>
                                 <td>
                                   <a href="/admin/accounts/edit/<%= u.username %>"> <i class="fa fa-pencil"></i> </a>
                                   <a href="/admin/accounts/delete/<%= u.username %>" style="margin-left:25%;"> <i class="fa fa-trash"></i> </a>

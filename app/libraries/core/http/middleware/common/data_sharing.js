@@ -42,14 +42,11 @@ export default class Data
 
       if (e)
       {
-        console.log(e)
         new Error('Data Sharing Middleware', e, req, res, 'fatal')
       }
       else
       {
-        res.locals.previous = req.header('Referer');
         res.locals.page = null
-        res.locals.message = null
         res.locals.website = {
           name    : r[0].brand,
           build   : r[0].version,

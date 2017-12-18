@@ -40,21 +40,13 @@ export default class Login
       .catch(e => {
         if (e == 'password')
         {
-          res.render('session/guest/login', {
-            message : {
-              type : 'errors',
-              text : 'Invalid password'
-            }
-          })
+          req.flash('error', 'We could not authenticate this request.')
+          res.redirect('/login')
         }
         else if (e == 'fake')
         {
-          res.render('session/guest/login', {
-            message : {
-              type : 'errors',
-              text : 'Invalid username'
-            }
-          })
+          req.flash('error', 'We could not find that user.')
+          res.redirect('/login')
         }
         else
         {
