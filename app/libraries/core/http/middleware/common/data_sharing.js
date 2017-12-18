@@ -49,8 +49,12 @@ export default class Data
       {
         res.locals.previous = req.header('Referer');
         res.locals.page = null
+        res.locals.message = null
         res.locals.website = {
           name    : r[0].brand,
+          build   : r[0].version,
+          link    : r[0].link,
+          status  : r[0].status,
           page    : String.capitalize(req.path.split('/')[1]),
           errors  : r[1]
         }

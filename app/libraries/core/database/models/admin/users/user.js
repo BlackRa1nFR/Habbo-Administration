@@ -1,8 +1,10 @@
 import Async from 'async'
-import Friends from './friends'
+import Moment from 'Moment'
+import Reset from './resets'
 import Hash from 'bcrypt-nodejs'
-import Status from './wall/status'
+import Group from './groups/group'
 import Database from  '../../../system'
+import Event from '../../../../events/admin/user'
 
 export default class User extends Database.Model
 {
@@ -12,15 +14,17 @@ export default class User extends Database.Model
         return 'xhabbo_users'
     }
 
-    friends ()
+    group ()
     {
-      return this.hasMany(Friends, 'a')
+      return this.belongsTo(Group, 'group')
     }
 
-    status ()
+    resets ()
     {
-      return this.hasMany(Status, 'user')
+      return this.hasOne(Reset, 'user')
     }
+
+
 
     static tryLogin (username, password)
     {
@@ -87,5 +91,75 @@ export default class User extends Database.Model
         }))
       })
     }
+
+    static updateWelcome(id, info)
+    {
+      return new Promise((r, e) => {
+
+        User.where('id', id).fetch()
+          .then (u => {
+            u.set('name', info.name)
+            u.set('email', info.email)
+            u.set('password', Hash.hashSync(info.password))
+            u.save()
+
+            Reset.where('user', id).destroy()
+
+            r(true)
+          })
+          .catch (er => {
+            e(er)
+          })
+
+      })
+    }
+
+    static updateAccount (info)
+    {
+      return new Promise((r,e ) => {
+        User.where('id', info.id).fetch()
+          .then (u => {
+
+            if (u)
+            {
+              const data = u.toJSON()
+              u.set('name', info.name)
+              u.set('email', info.email)
+              u.set('status', info.status)
+              u.save()
+
+              // Email Change Event
+              if (data.email != info.email) Event.EmailWasChanged(info.id, info.email)
+
+              // Password Change Event
+              if (info.password) Event.PasswordChangeRequested(info.id)
+
+              // User Suspended Event
+              if (info.status == 'locked') Event.SuspensionFiled(info.id, info.username, info.email)
+
+              r()
+            }
+            else
+            {
+              e('fake account')
+            }
+
+          })
+          .catch (er => {
+            e(er)
+          })
+      })
+
+    }
+
+
+
+    toJSON ()
+    {
+     const values            = Database.Model.prototype.toJSON.apply(this);
+     values.account_length    = Moment(values.created_at).fromNow()
+
+     return values;
+   }
 
 }

@@ -18,8 +18,6 @@ export default class Application
 
       Messages.write(100, r)
 
-      console.log('\n\n\nCopy digital ocean design for admin panel!')
-
       if (e)
       {
         errorMode = true

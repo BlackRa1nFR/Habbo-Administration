@@ -6,6 +6,7 @@ import Flash from 'connect-flash'
 import Redis from 'connect-redis'
 import Messages from '../messages'
 import Cookies from 'cookie-parser'
+import Error from '../modules/error'
 import Session from 'express-session'
 
 export default class System
@@ -67,8 +68,14 @@ export default class System
           {
             cb(e)
           }
-
         }))
+      },
+
+      // Define 404
+      function (cb)
+      {
+        http.get('*', Error.toss)
+        cb()
       }
 
     ], ((e, r) => {

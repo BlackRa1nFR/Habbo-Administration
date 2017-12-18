@@ -40,11 +40,21 @@ export default class Login
       .catch(e => {
         if (e == 'password')
         {
-          res.render('common/errors/auth/bad_password')
+          res.render('session/guest/login', {
+            message : {
+              type : 'errors',
+              text : 'Invalid password'
+            }
+          })
         }
         else if (e == 'fake')
         {
-          res.render('common/errors/auth/bad_user')
+          res.render('session/guest/login', {
+            message : {
+              type : 'errors',
+              text : 'Invalid username'
+            }
+          })
         }
         else
         {

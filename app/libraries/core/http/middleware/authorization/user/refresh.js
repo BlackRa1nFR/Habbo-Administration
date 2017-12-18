@@ -14,7 +14,7 @@ export default class Refresh
 
     if (req.session.auth)
     {
-      User.where('id', req.session.auth.user).fetch()
+      User.where('id', req.session.auth.user).fetch({ withRelated : ['group'] })
         .then (u => {
           u = u.toJSON()
           req.session.auth.data = u

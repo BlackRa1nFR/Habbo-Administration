@@ -11,7 +11,7 @@ export default class Table
 
   static get (req, res)
   {
-    Users.fetchAll()
+    Users.fetchAll({ withRelated : ['group'] })
       .then (u => {
         res.render('session/user/admin/accounts/users/table', {
           accounts : u.toJSON()

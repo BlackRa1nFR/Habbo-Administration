@@ -7,25 +7,31 @@ export default class Locked
 	constructor (http)
 	{
 		http.get('/admin/accounts/locked', Locked.get)
-		http.post('/admin/account/locked/create', Locked.add)
+		http.post('/admin/accounts/locked', Locked.add)
 	}
 
 	static get (req, res)
 	{
-		Users.where('status', 'locked').fetchAll()
+		Users.where('status', 'account_locked').fetchAll({ withRelated : ['group'] })
 			.then (u => {
 				res.render('session/user/admin/accounts/users/locked', {
 					accounts : u.toJSON()
 				})
 			})
 			.catch (e => {
-				new Error('Admin - Locked Users',e, req, res, 'normal')
+				new Error('Admin - Viewing Locked Users',e, req, res, 'normal')
 			})
 	}
 
 	static add (req, res)
 	{
-		res.send('fuck off mate, im tired')
+		Users.where('username', req.body.username).save({ status : 'account_locked' }, { method : 'update' })
+			.then (u => {
+				res.redirect('back')
+			})
+			.catch (e => {
+				new Error('Admin - Add Locked User',e, req, res, 'normal')
+			})
 	}
 
 }

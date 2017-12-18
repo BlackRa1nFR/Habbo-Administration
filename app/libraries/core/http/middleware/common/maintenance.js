@@ -1,6 +1,6 @@
 export default class Error
 {
- 
+
   constructor (http)
   {
     http.use(Error.check)
@@ -9,10 +9,23 @@ export default class Error
   static check (req, res, n)
   {
 
-    if (!errorMode)
+    if (res.locals.website.status == 'maintenance')
+    {
+      if (req.path == '/maintenance')
+      {
+        n()
+      }
+      else
+      {
+        res.redirect('/maintenance')
+      }
+    }
+
+    else if (!errorMode)
     {
       n()
     }
+
     else
     {
       res.render('common/errors/fatal')

@@ -1,0 +1,73 @@
+<% include ./modules/navi %>
+            <div class="settings-profile">
+                <div class="row u-mb-6">
+                    <div class="small-12 columns">
+                        <div class="Box">
+                            <div class="row">
+                                <div class="small-2 columns">
+                                    <div id="ember1426" class="ember-view">
+                                        <div class="avatarWrapper  ">
+                                            <div class="avatar avatar-overlay"></div>
+                                            <img src="<%= user.avatar %>" class="avatar">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="small-7 columns">
+                                    <h2 class="username"> <%= user.name %> <small>(<%= user.group.title %>)</small></h2>
+                                    <ul class="List--noBullets">
+                                        <li><%= user.email %></li>
+                                        <li>Staff Member since <%= user.account_length %></li>
+                                        <% if (user.security == 'single') { %>
+                                          <li> <a href="/settings/security" class="ember-view"> Enable two-factor authentication </a> </li>
+                                        <% } %>
+                                    </ul>
+                                </div>
+                                <div class="small-3 columns">
+                                    <a href="/settings/profile" class="Button u-floatRight ember-view">Edit Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row social-accounts">
+                  <div class="small-12 columns">
+                      <section class="Box u-mb-5">
+                        <h2>xHabbo V</h2>
+                        <p>Making management fun</p>
+                        <div class="row">
+                          <div class="small-4 columns">
+                              <button class="small-4 columns Button Button--fullWidth Button--github unconnected-github-button" data-ember-action="" data-ember-action-1246="1246">
+                                <i class="fa fa-cog"></i> Version <%= website.build %>
+                              </button>
+                          </div>
+                          <div class="small-4 columns">
+                              <button class="small-4 columns Button Button--fullWidth Button--twitter unconnected-twitter-button" data-ember-action="" data-ember-action-1247="1247">
+                                <i class="fa fa-database"></i> Plus DB
+                              </button>
+                          </div>
+                          <div class="small-4 columns">
+                              <button class="small-4 columns Button Button--fullWidth Button--google unconnected-google-button" data-ember-action="" data-ember-action-1248="1248">
+                                <i class="fa fa-github"></i> chrismpettyjohn
+                              </button>
+                          </div>
+                        </div>
+                      </section>
+
+                    <section class="Box u-mb-5 u-mt-5">
+                      <h2>
+                        Download Updates
+                        <a href="http://github.com/chrismpettyjohn/xhabbo" class="Button Button--red Button--outline u-floatRight">Download Now</a>
+                      </h2>
+                      <span>
+                          This will redirect you to the official github repository.
+                      </span>
+                    </section>
+                  </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
