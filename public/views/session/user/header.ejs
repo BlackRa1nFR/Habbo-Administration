@@ -42,11 +42,11 @@
         </div>
     </nav>
 
-    <% if (flash.error || flash.success) { %>
+    <% if (flash.message) { %>
       <div class="row">
       <div class="Alert--neutralGrey u-mb-4 ">
         <div class="Alert-content">
-          <p><%- flash.error || flash.success %> </p>
+          <p><%- flash.message %> </p>
         </div>
       </div>
       </div>

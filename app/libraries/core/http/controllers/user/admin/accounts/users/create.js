@@ -44,7 +44,7 @@ export default class Create
                   function (cb)
                   {
                     EJS.renderFile(`${homeDirectory}/public/views/common/email/accounts/welcome_to_xhabbo.ejs`, { account : u, config : c, key : pass }, ((er, da) => {
-                      new Mail(u.email, da)
+                      new Mail(u.email, da, 'Welcome to xHabbo')
                       cb()
                     }))
                   }

@@ -184,6 +184,18 @@ export default class User extends Database.Model
       })
     }
 
+    static updatePassword (id, password)
+    {
+      return new Promise((r, e) => {
+        User.where('id', id).save({ password : Hash.hashSync(password), status : 'normal' }, { method : 'update' })
+          .then (u => {
+            r(true)
+          })
+          .catch (er => {
+            e(er)
+          })
+      })
+    }
 
 
     toJSON ()

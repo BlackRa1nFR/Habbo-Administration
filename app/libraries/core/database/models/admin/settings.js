@@ -9,19 +9,23 @@ export default class Settings extends Database.Model
         return 'xhabbo_settings'
     }
 
-    static compare (v)
+    static getCurrent ()
     {
       return new Promise((r, e) => {
-        Settings.forge().fetch()
-          .then (d => {
-            if (d.toJSON().build == v)
+        Settings.where('id', 1).fetch()
+          .then (s => {
+
+            if (s)
             {
-              r(false)
+              r(s.toJSON())
             }
             else
             {
-              r(true)
+              e('Please add a row to the xhabbo_settings table!')
             }
+          })
+          .catch (error => {
+            e(error)
           })
       })
     }

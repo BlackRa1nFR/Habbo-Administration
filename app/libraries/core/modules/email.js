@@ -3,7 +3,7 @@ import Mail from 'nodemailer'
 export default class Email
 {
 
-  constructor (who, content)
+  constructor (who, content, subject)
   {
     Mail.createTestAccount((e, a) => {
 
@@ -20,7 +20,7 @@ export default class Email
       let mailOptions = {
           from          : '"xHabbo Automation System 👻" <xhabbo@zoho.com>',
           to            : who,
-          subject       : 'Welcome to xHabbo Administration',
+          subject       : subject,
           text          : content,
           html          : content
       }
