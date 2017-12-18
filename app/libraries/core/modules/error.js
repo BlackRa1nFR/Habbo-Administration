@@ -1,3 +1,4 @@
+import Moment from 'moment'
 import Errors from '../database/models/admin/errors'
 export default class Error
 {
@@ -10,12 +11,18 @@ export default class Error
       content : `${content}`,
       user : request.session.auth.user,
       url_accessed : request.path,
-      type : type, 
+      type : type,
+      created_at : Moment().format("YYYY-MM-DD HH:mm:ss")
     }).save()
 
 
     if (type === 'fatal') errorMode = true
     result.render('common/errors/fatal')
+  }
+
+  static toss (req, res)
+  {
+    res.render('common/errors/404')
   }
 
 }

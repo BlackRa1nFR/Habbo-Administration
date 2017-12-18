@@ -14,5 +14,13 @@ export default class Group extends Database.Model
       return this.hasMany(Members, 'group')
     }
 
+    static addMember (user, group)
+    {
+      // To Do
+      return new Promise((r,e) => {
+
+      })
+    }
+
 
 }

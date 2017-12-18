@@ -1,74 +1,108 @@
-<% include ../../../header %>
+<% include ./modules/navi %>
 
-<div class="container-alt">
-			<div class="row">
-			<div class="col-sm-10 col-sm-offset-1">
-				<div class="wrapper-page signup-signin-page">
-					<div class="card-box">
-						<div class="panel-heading">
-							<h3 class="text-center"> Editing <strong class="text-custom"><%= account.username %></strong></h3>
-						</div>
+<div class="droplet-show" id="navi">
+		<div class="row">
+				<div class="columns small-12">
+						<div class="header" style="border:none;">
+								<div class="droplet-header u-mb-2">
+										<div role="button" class="can-edit" data-ember-action="" data-ember-action-1172="1172">
+												<div data-value="ubuntu-512mb-nyc3-01" data-type="droplet" data-id="75203278" class="Resource    Resource--rightContext">
+														<div class="Resource-image large">
+																<img src="<%= account.avatar %>">
+																<div class="statusIndicator active  ">
+																</div>
+														</div>
+														<div class="Resource-meta  ">
+																<div role="button" class="Resource-title">
+																		<%= account.username %>
 
-						<div class="panel-body">
-							<div class="row">
-                <form class="form-horizontal m-t-20" method="post">
-								<div class="col-lg-6">
-									<div class="p-20">
-											<div class="form-group ">
-												<div class="col-xs-12">
-                          <h5><b>Real Name</b></5>
-													<input name="name" value="<%= account.name %>" class="form-control" type="text" required="">
+																</div>
+																<div class="Resource-description"> <%= account.group.title %> </div>
+														</div>
 												</div>
-											</div>
 
-											<div class="form-group">
-												<div class="col-xs-12">
-                          <h5><b>Email</b></5>
-													<input name="email" value="<%= account.email %>" class="form-control" type="email" required="">
-												</div>
-                      </div>
-									</div>
+
+										</div>
 								</div>
 
-
-								<div class="col-lg-6">
-									<div class="p-20">
-											<div class="form-group ">
-												<div class="col-xs-12">
-                          <h5><b>Avatar Image</b></5>
-													<input name="avatar" value="<%= account.avatar %>" class="form-control" type="text" required="">
+								<div data-toggle="tooltip" class="toggle-wrap tooltip-wrap ember-view">
+										<div>
+											<% if (account.status == 'normal') { %>
+												<a href="/admin/accounts/suspend/<%= account.id %>">
+													<div class="Toggle is-on ">
+														<div class="Toggle-switcher"></div>
+													</div>
+												</a>
+											<% } else { %>
+												<a href="/admin/accounts/suspend/<%= account.id %>">
+													<div class="Toggle is-off ">
+														<div class="Toggle-switcher"></div>
+													</div>
+												</a>
+											<% } %>
+										</div>
+								</div>
+								<ul class="Tabs u-mb-4 droplet-tabs">
+										<li> <a href="#navi-1"> Basic Information </a> </li>
+										<li> <a href="#navi-2"> Security Preferences </a> </li>
+										<li> <a href="#navi-3"> Review Access Report  </a> </li>
+								</ul>
+								<div class="row u-mt-5">
+									<div class="small-12 columns" style="margin-top:-15%;>">
+										<!-- Basic -->
+										<div id="navi-1">
+											<form method="post">
+												<div>
+													<div>
+														<label>First Name</label>
+														<input name="name" value="<%= account.name %>" type="text" spellcheck="false" required="" maxlength="15">
+													</div>
+													<div>
+														<label>Avatar Image</label>
+														<input name="avatar" value="<%= account.avatar %>" type="text" spellcheck="false" required="" maxlength="15">
+													</div>
+													<div>
+														<button class="Button Button--blue Button--large Button--fullWidth ">Update Account</button>
+													</div>
 												</div>
-											</div>
+											</form>
+										</div>
 
-											<div class="form-group">
-												<div class="col-xs-12">
-                          <h5><b>Position</b></5>
-													<input name="position" value="<%= account.position %>" class="form-control" type="text" required="">
+										<!-- Security -->
+										<div id="navi-2">
+											<form method="post">
+												<div>
+													<div>
+														<label>Access Group</label>
+														<select name="group">
+															<% groups.forEach(g => { %>
+																<% if (g.id == account.group.id) { %>
+																	<option value="<%= g.id %>" selected=""><%= g.title %></option>
+																<% }  else { %>
+																	<option value="<%= g.id %>"><%= g.title %></option>
+																<% } %>
+															<% } )%>
+														</select>
+													</div>
+													<div>
+														<button class="Button Button--blue Button--large Button--fullWidth ">Update Account</button>
+													</div>
 												</div>
-											</div>
+											</form>
+										</div>
 
-
-
-											<div class="form-group text-right m-t-20 m-b-0">
-												<div class="col-xs-12">
-													<button class="btn btn-pink text-uppercase waves-effect waves-light w-sm" type="submit">
-														Save Changes
-													</button>
+										<!-- Reports -->
+										<div id="navi-3">
+											<form method="post">
+												<div>
+													Coming soon
 												</div>
-											</div>
+											</form>
+										</div>
 
-										</form>
 									</div>
 								</div>
-
 							</div>
-
 						</div>
 					</div>
-
 				</div>
-			</div>
-		</div>
-		</div>
-
-<% include ../../../footer %>

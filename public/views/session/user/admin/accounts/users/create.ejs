@@ -1,40 +1,63 @@
 <% include ../../../header %>
+<div class="row">
+    <div class="small-8 small-centered columns team-creation-wrapper">
+        <div id="ember1311" class="ember-view">
+            <div id="ember1316" class="ember-view">
+                <div class="row creation-steps">
+                    <div class="small-11 small-centered columns ">
+                        <div class="row">
+                            <h1>Create A New User</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<div class="container-alt">
-			<div class="row">
-			<div class="col-sm-10 col-sm-offset-1">
-				<div class="wrapper-page signup-signin-page">
-					<div class="card-box">
-						<div class="panel-heading">
-							<h3 class="text-center"> Creating new <strong class="text-custom">account</strong></h3>
-						</div>
+            <div class="row ">
+                <div class="small-11 small-centered columns">
+                    <div id="ember1321" class="ember-view">
+                        <div class="row">
+                            <div class="small-12 colums Box">
+                                <div class="u-textAlignCenter u-mb-4">
+                                    <img src="https://cloud-cdn-digitalocean-com.global.ssl.fastly.net/aurora/assets/images/empty-team-c3e9262be567488dc7c9b74ec611fe71.svg" alt="" class="EmptyState-image u-mb-0">
+                                    <h2>User information</h2>
+                                    <p>Add some details about your new team member.
+                                        <br>Don’t worry, you can always change this later.</p>
+                                </div>
 
-						<div class="panel-body">
-							<form class="form-horizontal m-t-20" method="post">
-								<div class="row">
-									<div class="col-lg-6">
-										<h5><b>Username</b></5>
-										<input name="username" class="form-control" type="text" required="">
-									</div>
-									<div class="col-lg-6">
-										<h5><b>Email</b></5>
-										<input name="email" class="form-control" type="email" required="">
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-lg-10"></div>
-									<div class="col-lg-2">
-										<button class="btn btn-pink text-uppercase waves-effect waves-light w-sm" type="submit">
-											Save Changes
-										</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                                <form method="post">
+                                    <div>
+                                        <div class="row">
+                                            <div class="small-6 columns">
+																							<input name="username" type="text" required="" placeholder="Username" maxlength="30" autofocus="" class="Input--floatLabel FloatLabel-input">
+                                            </div>
+                                            <div class="small-6 columns">
+																							<input name="email" type="email" required="" placeholder="Email" maxlength="30" autofocus="" class="Input--floatLabel FloatLabel-input">
+                                            </div>
+                                        </div>
 
-<% include ../../../footer %>
+                                        <div class="row u-mt-3">
+                                            <div class="small-12 columns buttons-col ">
+                                                <div>
+                                                    <button class="Button Button--blue Button--large Button--fullWidth "> Continue </button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 columns u-textAlignCenter u-mt-4">
+                    <a href="/admin/accounts">Cancel</a>
+                </div>
+            </div>
+
+            <!---->
+        </div>
+    </div>
+</div>

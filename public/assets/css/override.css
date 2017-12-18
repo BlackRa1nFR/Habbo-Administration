@@ -1,0 +1,4 @@
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+  color: #0069ff;
+  border-bottom: 1px solid #0069ff;
+}

@@ -1,0 +1,201 @@
+<% include ../../header %>
+
+<div class="row">
+  <div class="columns small-12">
+    <h1>Settings</h1>
+  </div>
+</div>
+
+<div class="row" id="navi">
+  <div class="columns small-12">
+    <ul class="Tabs u-mb-4 droplet-tabs">
+      <li><a href="#navi-1">General</a></li>
+      <li><a href="#navi-2">Security</a></li>
+      <li><a href="#navi-3">Logging</a></li>
+      <li><a href="#navi-4">Email</a></li>
+      <li><a href="#navi-5">Tasking</a></li>
+      <li><a href="#navi-6">Maintenance</a></li>
+    </ul>
+  </div>
+  <div class="columns small-12 networkingPage">
+    <div class="u-mb-5">
+
+      <!-- General -->
+      <div class="row" id="navi-1">
+        <div class="small-6 columns">
+          <form method="post">
+            <div>
+              <div>
+                <label>Admin Panel Link</label>
+                <input name="link" value="<%= config.link %>" type="text">
+              </div>
+              <div>
+                <button class="Button Button--blue Button--large Button--fullWidth ">Save</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Security -->
+      <div class="row" id="navi-2">
+        <div class="small-6 columns">
+          <form method="post">
+            <div>
+              <div>
+                <label>Minimum Account Verification</label>
+                <select name="account_security">
+                  <%  if (config.account_security == 'low') { %>
+                    <option value="high" selected="">Password Authenticated</option>
+                    <option value="high">Restrict To IP</option>
+                    <option value="high">Email Verification</option>
+                  <% } else if (config.account_security == 'med') { %>
+                    <option value="high">Password Authenticated</option>
+                    <option value="high" selected="">Restrict To IP</option>
+                    <option value="high">Email Verification</option>
+                  <% } else { %>
+                    <option value="high">Password Authenticated</option>
+                    <option value="high">Restrict To IP</option>
+                    <option value="high" selected="">Email Verification</option>
+                  <% } %>
+                </select>
+              </div>
+              <div>
+                <button class="Button Button--blue Button--large Button--fullWidth ">Save</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Logging -->
+      <div class="row" id="navi-3">
+        <div class="small-6 columns">
+          <form method="post">
+            <div>
+              <div>
+                <label>Action Logging</label>
+                <select name="min_account_sec">
+                  <% if (config.action_logging == 'action_logging') { %>
+                    <option value="enabled" selected="">Enabled</option>
+                    <option value="enabled">Disabled</option>
+                  <% } else { %>
+                    <option value="enabled">Enabled</option>
+                    <option value="enabled" selected="">Disabled</option>
+                  <% } %>
+                </select>
+              </div>
+              <div>
+                <label>Error Logging</label>
+                <select name="error_logging">
+                  <% if (config.error_logging == 'enabled') { %>
+                    <option value="enabled" selected="">Enabled</option>
+                    <option value="enabled">Disabled</option>
+                  <% } else { %>
+                    <option value="enabled">Enabled</option>
+                    <option value="enabled" selected="">Disabled</option>
+                  <% } %>
+                </select>
+              </div>
+              <div>
+                <button class="Button Button--blue Button--large Button--fullWidth ">Save</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="row" id="navi-4">
+        <div class="small-6 columns">
+          <form method="post">
+            <div>
+              <div>
+                <label>Email Address</label>
+                <input name="email_address" value="<%= config.email_address %>" type="email" spellcheck="false" required="">
+
+              </div>
+              <div>
+                <label>Email Password</label>
+                <input name="email_password" value="<%= config.email_password %>" type="text" spellcheck="false" required="">
+
+              </div>
+              <div>
+                <button class="Button Button--blue Button--large Button--fullWidth ">Save</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tasking -->
+      <div class="row" id="navi-5">
+        <div class="small-6 columns">
+          <form method="post">
+            <div>
+              <div>
+                <label>Backup Manager</label>
+                <select name="backup_task">
+                  <% if (config.backup_task == 'enabled') { %>
+                    <option value="enabled" selected="">Enabled</option>
+                    <option value="enabled">Disabled</option>
+                  <% } else { %>
+                    <option value="enabled">Enabled</option>
+                    <option value="enabled" selected="">Disabled</option>
+                  <% } %>
+                </select>
+              </div>
+              <div>
+                <label>Cloud Data Handler</label>
+                <select name="cloud_task">
+                  <% if (config.cloud_task == 'enabled') { %>
+                    <option value="enabled" selected="">Enabled</option>
+                    <option value="enabled">Disabled</option>
+                  <% } else { %>
+                    <option value="enabled">Enabled</option>
+                    <option value="enabled" selected="">Disabled</option>
+                  <% } %>
+                </select>
+              </div>
+              <div>
+                <button class="Button Button--blue Button--large Button--fullWidth ">Save</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Maintenance -->
+      <div id="navi-6">
+        <div class="small-12 colums Box">
+          <div class="u-textAlignCenter u-mb-4">
+              <img src="https://cloud-cdn-digitalocean-com.global.ssl.fastly.net/aurora/assets/images/empty-team-c3e9262be567488dc7c9b74ec611fe71.svg" alt="" class="EmptyState-image u-mb-0">
+              <h2>Maintenance Mode</h2>
+              <p>The admin panel will be locked until the security key is entered</p>
+          </div>
+
+          <form method="post">
+              <div>
+                  <div class="row">
+                      <div class="small-12 columns">
+                          <input name="security" type="password" required="" placeholder="Security Key" maxlength="30" autofocus="" class="Input--floatLabel FloatLabel-input">
+                      </div>
+                  </div>
+
+                  <div class="row u-mt-3">
+                      <div class="small-12 columns buttons-col ">
+                          <div>
+                              <button class="Button Button--blue Button--large Button--fullWidth "> Continue </button>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+          </form>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+</div>

@@ -29,7 +29,7 @@ export default class Create
         c = c.toJSON()
         Users.hasDuplicate(req.body.username, req.body.email)
           .then (i => {
-            Users.forge({ username : req.body.username, email : req.body.email, position : 'New Member' }).save()
+            Users.forge({ username : req.body.username, email : req.body.email, position : 'New Member', created_at : Moment().format("YYYY-MM-DD HH:mm:ss") }).save()
               .then (u => {
                 const pass = Crypto.randomBytes(12).toString('hex')
                 u = u.toJSON()
@@ -55,8 +55,12 @@ export default class Create
                   }
                   else
                   {
-                    res.render('common/messages/changes_saved')
-                  }
+                    res.render('session/user/admin/accounts/users/create', {
+                      message : {
+                        title   : 'Your changes have been saved',
+                        content : 'an email has been sent to your new user'
+                      }
+                    })                  }
 
                 }))
               })
@@ -66,7 +70,12 @@ export default class Create
               })
           })
           .catch (error => {
-            res.render('common/messages/other/admin_in_use')
+            res.render('session/user/admin/accounts/users/create', {
+              message : {
+                title   : 'Failed to create user',
+                content : 'that username or email is already in use'
+              }
+            })
           })
       })
       .catch (e => {

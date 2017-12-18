@@ -1,71 +1,38 @@
-<% include ../../header %>
-
-<div class="row">
-  <div class="col-lg-3 col-sm-6">
-      <div class="widget-panel widget-style-2 bg-white">
-          <i class="md md-account-child text-primary"></i>
-          <h2 class="m-0 text-dark counter font-600">0</h2>
-          <div class="text-muted m-t-5">Total Users</div>
-      </div>
-  </div>
-  <div class="col-lg-3 col-sm-6">
-      <div class="widget-panel widget-style-2 bg-white">
-          <i class="md md-security text-pink"></i>
-          <h2 class="m-0 text-dark counter font-600">0</h2>
-          <div class="text-muted m-t-5">Database Backups</div>
-      </div>
-  </div>
-  <div class="col-lg-3 col-sm-6">
-      <div class="widget-panel widget-style-2 bg-white">
-          <i class="md md-error text-info"></i>
-          <h2 class="m-0 text-dark counter font-600"><%= website.errors.length %></h2>
-          <div class="text-muted m-t-5">Logged Errors</div>
-      </div>
-  </div>
-  <div class="col-lg-3 col-sm-6">
-      <div class="widget-panel widget-style-2 bg-white">
-          <i class="md md-visibility text-custom"></i>
-          <h2 class="m-0 text-dark counter font-600">0</h2>
-          <div class="text-muted m-t-5">Total Administrators</div>
-      </div>
-  </div>
-
-  <div class="row">
-                    <!-- Transactions -->
-                    <div class="col-lg-4">
-                        <div class="card-box">
-                            <h4 class="m-t-0 m-b-20 header-title"><b>Development tool</b></h4>
-
-                            <div class="nicescroll mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
-                                <ul class="list-unstyled transaction-list m-r-5">
-                                    <li>
-                                        <i class="ti-download text-danger"></i>
-                                        <span class="tran-text">IP Validation</span>
-                                        <span class="clearfix"></span>
-                                    </li>
-                                </ul>
+<% include ./modules/navi %>
+            <div class="settings-profile">
+                <div class="row u-mb-6">
+                    <div class="small-12 columns">
+                        <div class="Box">
+                            <div class="row">
+                                <div class="small-2 columns">
+                                    <div id="ember1426" class="ember-view">
+                                        <div class="avatarWrapper  ">
+                                            <div class="avatar avatar-overlay"></div>
+                                            <img src="<%= user.avatar %>" class="avatar">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="small-7 columns">
+                                    <h2 class="username"> <%= user.name %> <small>(<%= user.group.title %>)</small></h2>
+                                    <ul class="List--noBullets">
+                                        <li><%= user.email %></li>
+                                        <li>Staff Member since <%= user.account_length %></li>
+                                        <% if (user.security == 'single') { %>
+                                          <li> <a href="/settings/security" class="ember-view"> Enable two-factor authentication </a> </li>
+                                        <% } %>
+                                    </ul>
+                                </div>
+                                <div class="small-3 columns">
+                                    <a href="/settings/profile" class="Button u-floatRight ember-view">Edit Profile</a>
+                                </div>
                             </div>
                         </div>
-
-                    </div> <!-- end col -->
-
-                    <div class="col-lg-8">
-                      <div class="card-box">
-                          <h4 class="m-t-0 m-b-20 header-title"><b>Ideas</b></h4>
-                          <ul>
-                            <li>Hourly Email Reports</li>
-                            <li>Hourly Backups</li>
-                          </ul>
-                      </div>
-                      <div class="card-box">
-                          <h4 class="m-t-0 m-b-20 header-title"><b>Not Complete</b></h4>
-                          <ul>
-                            <li>Dashboard Statistics</li>
-                          </ul>
-                      </div>
+                    </div>
                 </div>
 
+            </div>
 
+        </div>
+    </div>
 
-
-<% include ../../footer %>
+</div>
