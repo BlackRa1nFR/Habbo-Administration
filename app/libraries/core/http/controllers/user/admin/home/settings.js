@@ -18,7 +18,7 @@ export default class Settings
 
   static changePassword (req, res)
   {
-    if (req.session.auth.user.status != 'password_reset')
+    if (req.session.auth.data.status != 'password_reset')
     {
       res.redirect('/dashboard')
     }

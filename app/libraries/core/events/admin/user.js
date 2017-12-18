@@ -66,7 +66,6 @@ export default class User
       function (user, link, config, cb)
       {
         EJS.renderFile(`${homeDirectory}/public/views/common/email/accounts/password_reset.ejs`, { account : user, key : link, config : config }, ((er, da) => {
-          console.log(er)
           new Mail(user.email, da, 'Password Change Requested')
           cb(null)
         }))
@@ -106,13 +105,23 @@ export default class User
           })
       },
       // Delete Link
+      function (key, cb)
+      {
+        Resets.where('link', req.params.key).destroy()
+          .then (r => {
+            cb(null, key)
+          })
+          .catch (e => {
+            cb(e)
+          })
+      },
 
       // Update User & Return
       function (key, cb)
       {
-        Users.where('id', key.id).save( { status : 'password_reset' }, { method : 'update' })
+        Users.where('id', key.user).save( { status : 'password_reset' }, { method : 'update' })
           .then (u => {
-            Users.where('id', key.id).fetch()
+            Users.where('id', key.user).fetch()
               .then (u => {
                 cb(null, u.toJSON())
               })
@@ -144,7 +153,15 @@ export default class User
 
       if (error)
       {
-        if (error != 'fake') new Error('Admin - Account Password Change Request Event',error, req, res, 'normal')
+        if (error != 'fake')
+        {
+          new Error('Admin - Account Password Change Request Event',error, req, res, 'normal')
+        }
+        else
+        {
+          req.flash('error', 'We could not find that reset key')
+          res.redirect('/login')
+        }
       }
       else
       {
