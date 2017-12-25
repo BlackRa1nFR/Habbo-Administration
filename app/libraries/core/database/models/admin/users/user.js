@@ -201,7 +201,7 @@ export default class User extends Database.Model
     toJSON ()
     {
      const values            = Database.Model.prototype.toJSON.apply(this)
-     values.last_active      = Moment(values.last_ctive).fromNow()
+     values.last_active      = Moment(values.last_active).fromNow()
      values.account_length   = Moment(values.created_at).fromNow()
 
      return values;

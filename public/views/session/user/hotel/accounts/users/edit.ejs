@@ -1,0 +1,102 @@
+<% include ./modules/navi %>
+
+<div class="droplet-show" id="navi">
+		<div class="row">
+				<div class="columns small-12">
+						<div class="header" style="border:none;">
+								<div class="droplet-header u-mb-2">
+										<div role="button" class="can-edit" data-ember-action="" data-ember-action-1172="1172">
+												<div data-value="ubuntu-512mb-nyc3-01" data-type="droplet" data-id="75203278" class="Resource    Resource--rightContext">
+														<div class="Resource-image large">
+																<img src="<%= website.habbo_imager%>?figure=<%= account.look %>&headonly=1">
+                                <% if (account.online == 1) { %>
+                                  <div class="statusIndicator active  ">
+                                <% } else { %>
+                                  <div class="statusIndicator">
+                                <% } %>
+																</div>
+														</div>
+														<div class="Resource-meta  ">
+																<div role="button" class="Resource-title">
+																		<%= account.username %>
+
+																</div>
+																<div class="Resource-description"> <%= account.group.name %> </div>
+														</div>
+												</div>
+
+
+										</div>
+								</div>
+								<ul class="Tabs u-mb-4 droplet-tabs">
+										<li> <a href="#navi-1"> Basic Information </a> </li>
+                    <li> <a href="#navi-2"> Security Preference </a> </li>
+                    <li> <a href="#navi-3"> Chatlogs </a> </li>
+								</ul>
+								<div class="row u-mt-5">
+									<div class="small-12 columns" style="margin-top:-15%;>">
+										<!-- Basic -->
+										<div id="navi-1">
+											<form method="post">
+												<div>
+													<div>
+														<label>Username</label>
+														<input name="username" value="<%= account.username %>" type="text" spellcheck="false" required="">
+													</div>
+                          <div>
+                            <label>Email</label>
+                            <input name="mail" value="<%= account.mail %>" type="text" spellcheck="false" required="">
+                          </div>
+													<div>
+														<label>Motto</label>
+														<input name="motto" value="<%= account.motto %>" type="text" spellcheck="false" required="">
+													</div>
+                          <div>
+                            <label>Look</label>
+                            <input name="look" value="<%= account.look %>" type="text" spellcheck="false" required="">
+                          </div>
+													<div>
+														<button class="Button Button--blue Button--large Button--fullWidth ">Update Account</button>
+													</div>
+												</div>
+											</form>
+										</div>
+
+										<!-- Security -->
+										<div id="navi-2">
+											<form method="post">
+												<div>
+													<div>
+														<label>User Ranking</label>
+														<select name="rank">
+															<% groups.forEach(g => { %>
+																<% if (g.id == account.group.id) { %>
+																	<option value="<%= g.id %>" selected=""><%= g.name %></option>
+																<% }  else { %>
+																	<option value="<%= g.id %>"><%= g.name %></option>
+																<% } %>
+															<% }) %>
+														</select>
+													</div>
+													<div>
+														<button class="Button Button--blue Button--large Button--fullWidth ">Update Account</button>
+													</div>
+												</div>
+											</form>
+										</div>
+
+										<!-- Chatlog -->
+										<div id="navi-3">
+											<form method="post">
+												<div>
+													Coming soon
+												</div>
+											</form>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>

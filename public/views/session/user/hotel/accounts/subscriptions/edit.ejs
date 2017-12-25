@@ -1,0 +1,63 @@
+<% include ./modules/navi %>
+
+<div class="droplet-show" id="navi">
+		<div class="row">
+				<div class="columns small-12">
+						<div class="header" style="border:none;">
+								<div class="droplet-header u-mb-2">
+										<div role="button" class="can-edit">
+												<div class="Resource Resource--rightContext">
+														<div class="Resource-image large">
+																<img src="<%= website.habbo_images %>/<%= sub.badge_code %>.gif">
+														</div>
+														<div class="Resource-meta  ">
+																<div role="button" class="Resource-title">
+																		<%= sub.name %>
+																</div>
+														</div>
+												</div>
+
+
+										</div>
+								</div>
+								<ul class="Tabs u-mb-4 droplet-tabs">
+										<li> <a href="#navi-1"> Basic Information </a> </li>
+                    <li> <a href="#navi-2"> Member Management </a> </li>
+								</ul>
+								<div class="row u-mt-5">
+									<div class="small-12 columns" style="margin-top:-15%;>">
+										<!-- Basic -->
+										<div id="navi-1">
+											<form method="post">
+												<div>
+													<div>
+														<label>Name</label>
+                            <input name="id" value="<%= sub.id %>" hidden="">
+														<input name="name" value="<%= sub.name %>" type="text" spellcheck="false" required="">
+													</div>
+                          <div>
+                            <label>Badge Code</label>
+                            <input name="badge_code" value="<%= sub.badge_code %>" type="text" spellcheck="false" required="">
+                          </div>
+													<div>
+														<button class="Button Button--blue Button--large Button--fullWidth ">Update</button>
+													</div>
+												</div>
+											</form>
+										</div>
+
+										<!-- Member Management -->
+										<div id="navi-2">
+											<form method="post">
+												<div>
+													Coming soon
+												</div>
+											</form>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>

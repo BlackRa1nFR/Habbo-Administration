@@ -1,17 +1,17 @@
 import Users from '../users/user'
 import Database from  '../../../system'
 
-export default class Groups extends Database.Model
+export default class Subscriptions extends Database.Model
 {
 
     get tableName ()
     {
-        return 'permissions_groups'
+        return 'subscriptions'
     }
 
     members ()
     {
-      return this.hasMany(Users, 'rank')
+      return this.hasMany(Users, 'rank_vip')
     }
 
 }

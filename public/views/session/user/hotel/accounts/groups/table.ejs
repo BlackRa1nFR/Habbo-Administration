@@ -1,0 +1,135 @@
+<% include ./modules/navi %>
+<div class="droplet-show" id="navi">
+  <div class="row droplet-header">
+      <div class="small-12 columns">
+          <ul role="tablist" class="Tabs u-mb-4 droplet-tabs">
+              <li> <a href="#navi-1"> All Groups</a> </li>
+              <li> <a href="#navi-2"> VIP </a> </li>
+              <li> <a href="#navi-3"> Staff </a> </li>
+          </ul>
+      </div>
+  </div>
+
+  <!-- All Groups -->
+  <div class="row" id="navi-1">
+      <div class="small-12 columns">
+          <table class="droplet-listing">
+              <thead>
+                  <tr>
+                      <th> <span class="headerText"> Title </span> </th>
+                      <th> <span class="headerText"> Hidden </span> </th>
+                      <th> <span class="headerText"> Manage </span> </th>
+                  </tr>
+              </thead>
+              <tbody>
+                <% groups.forEach(g => { %>
+                  <tr class="done">
+                      <td class="name">
+                          <a href="/admin/groups/edit/<%= g.id %>">
+                              <div class="ellipsis-text">
+                                  <div class="Resource    Resource--rightContext">
+                                      <div class="Resource-image ">
+                                          <div>
+                                            <object data="<%= website.habbo_images %>/<%= g.badge_code %>.gif" type="image/png">
+                                              <img src="<%= website.habbo_images %>/BE1.gif">
+                                             </object>
+                                          </div>
+                                      </div>
+                                      <div class="Resource-meta  ">
+                                          <div role="button" class="Resource-title"><%= g.name %> </div>
+                                          <div class="Resource-description"> <%= g.members.length %> members </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </a>
+                      </td>
+                      <td> <%= g.hidden %>  </td>
+                      <td>
+                        <a href="/hotel/groups/edit/<%= g.id %>"> <i class="fa fa-pencil"></i> </a>
+                        <a href="/hotel/groups/delete/<%= g.id %>" style="margin-left:10%;"> <i class="fa fa-trash"></i> </a>
+                      </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+          </table>
+      </div>
+  </div>
+
+  <!-- VIP -->
+  <div class="row" id="navi-2">
+      <div class="small-12 columns">
+          <table class="droplet-listing">
+              <thead>
+                  <tr>
+                      <th> <span class="headerText"> Badge </span> </th>
+                      <th> <span class="headerText"> Subscription Name </span> </th>
+                      <th> <span class="headerText"> Manage </span> </th>
+                  </tr>
+              </thead>
+              <tbody>
+                <% vip.forEach(g => { %>
+                  <tr class="done">
+                    <td>
+                      <div style="text-align: center;width:60px;">
+                        <object data="<%= website.habbo_images %>/<%= g.badge_code %>.gif" type="image/png">
+                          <img src="<%= website.habbo_images %>/BE1.gif">
+                         </object>
+                      </div>
+                    </td>
+                    <td> <%= g.name %> </td>
+                      <td>
+                        <a href="/hotel/subscriptions/edit/<%= g.id %>"> <i class="fa fa-pencil"></i> </a>
+                        <a href="/hotel/subscriptions/delete/<%= g.id %>" style="margin-left:10%;"> <i class="fa fa-trash"></i> </a>
+                      </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+          </table>
+      </div>
+  </div>
+
+  <!-- Staff -->
+  <div class="row" id="navi-3">
+      <div class="small-12 columns">
+          <table class="droplet-listing">
+              <thead>
+                  <tr>
+                      <th> <span class="headerText"> Title </span> </th>
+                      <th> <span class="headerText"> Hidden </span> </th>
+                      <th> <span class="headerText"> Manage </span> </th>
+                  </tr>
+              </thead>
+              <tbody>
+                <% staff.forEach(g => { %>
+                  <tr class="done">
+                      <td class="name">
+                          <a href="/admin/groups/edit/<%= g.id %>">
+                              <div class="ellipsis-text">
+                                  <div class="Resource    Resource--rightContext">
+                                      <div class="Resource-image ">
+                                          <div>
+                                            <object data="<%= website.habbo_images %>/<%= g.badge_code %>.gif" type="image/png">
+                                              <img src="<%= website.habbo_images %>/BE1.gif">
+                                             </object>
+                                          </div>
+                                      </div>
+                                      <div class="Resource-meta  ">
+                                          <div role="button" class="Resource-title"><%= g.name %> </div>
+                                          <div class="Resource-description"> <%= g.members.length %> members </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </a>
+                      </td>
+                      <td> <%= g.hidden %>  </td>
+                      <td>
+                        <a href="/hotel/groups/edit/<%= g.id %>"> <i class="fa fa-pencil"></i> </a>
+                        <a href="/hotel/groups/delete/<%= g.id %>" style="margin-left:10%;"> <i class="fa fa-trash"></i> </a>
+                      </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>

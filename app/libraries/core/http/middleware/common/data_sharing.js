@@ -48,12 +48,14 @@ export default class Data
       {
         res.locals.page = null
         res.locals.website = {
-          name    : r[0].brand,
-          build   : r[0].version,
-          link    : r[0].link,
-          status  : r[0].status,
-          page    : String.capitalize(req.path.split('/')[1]),
-          errors  : r[1]
+          name          : r[0].brand,
+          build         : r[0].version,
+          link          : r[0].link,
+          status        : r[0].status,
+          habbo_imager  : r[0].habbo_imager,
+          habbo_images  : r[0].habbo_images,
+          page          : String.capitalize(req.path.split('/')[1]),
+          errors        : r[1]
         }
         n()
 

@@ -1,15 +1,15 @@
 import Async from 'async'
 import Error from '../../../../../../modules/error'
-import Users from '../../../../../../database/models/admin/users/user'
-import Groups from '../../../../../../database/models/admin/users/groups/group'
+import Users from '../../../../../../database/models/hotel/users/user'
+import Groups from '../../../../../../database/models/hotel/permissions/group'
 
 export default class Edit
 {
 
   constructor (http)
   {
-    http.get('/admin/accounts/edit/:username', Edit.get)
-    http.post('/admin/accounts/edit/:username', Edit.do)
+    http.get('/hotel/accounts/edit/:username', Edit.get)
+    http.post('/hotel/accounts/edit/:username', Edit.do)
   }
 
   static get (req, res)
@@ -50,7 +50,7 @@ export default class Edit
 
       if (!e)
       {
-        res.render('session/user/admin/accounts/users/edit', {
+        res.render('session/user/hotel/accounts/users/edit', {
           account : r[0],
           groups  : r[1]
         })
@@ -59,11 +59,11 @@ export default class Edit
       {
         if (e == 'fake')
         {
-          res.redirect('/admin/accounts')
+          res.redirect('/hotel/accounts')
         }
         else
         {
-          new Error('Admin - User Editing',e, req, res, 'normal')
+          new Error('Hotel - User Editing',e, req, res, 'normal')
         }
       }
 
@@ -76,15 +76,16 @@ export default class Edit
   {
     Users.where('username', req.params.username).fetch()
       .then (u => {
-        u.set('name', req.body.name)
-        u.set('email', req.body.email)
-        u.set('avatar', req.body.avatar)
-        u.set('group', req.body.group)
+        u.set('username', req.body.username)
+        u.set('mail', req.body.mail)
+        u.set('motto', req.body.motto)
+        u.set('look', req.body.look)
+        u.set('rank', req.body.rank)
         u.save()
         res.redirect('back')
       })
       .catch (e => {
-        new Error('Admin - User Editing',e, req, res, 'normal')
+        new Error('hotel - User Editing',e, req, res, 'normal')
       })
   }
 
