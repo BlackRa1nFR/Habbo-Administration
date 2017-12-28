@@ -21,5 +21,8 @@
     "node-mysql-importer": "0.0.10",
     "nodemailer": "^4.4.1",
     "req-flash": "0.0.3"
+  },
+  "devDependencies": {
+    "standard": "^10.0.3"
   }
 }

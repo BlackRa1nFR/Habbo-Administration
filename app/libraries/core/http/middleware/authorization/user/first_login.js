@@ -1,40 +1,21 @@
-export default class Welcome
-{
-
-  constructor (http)
-  {
+export default class Welcome {
+  constructor (http) {
     http.use(Welcome.do)
   }
 
-  static do (req, res, n)
-  { 
-
-    if (req.session.auth)
-    {
-
-      if (req.path.indexOf('welcome') == -1)
-      {
-
-        if (req.session.auth.data.status == 'first_login')
-        {
+  static do (req, res, n) {
+    if (req.session.auth) {
+      if (req.path.indexOf('welcome') == -1) {
+        if (req.session.auth.data.status == 'first_login') {
           res.redirect('/welcome')
-        }
-        else
-        {
+        } else {
           n()
         }
-
-      }
-      else
-      {
+      } else {
         n()
       }
-
-    }
-    else
-    {
+    } else {
       n()
     }
-
   }
 }

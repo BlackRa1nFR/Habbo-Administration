@@ -1,24 +1,19 @@
 import Hash from 'bcrypt-nodejs'
 import User from '../../../../../database/models/admin/users/user'
 
-export default class Welcome
-{
-
-  constructor (http)
-  {
+export default class Welcome {
+  constructor (http) {
     http.get('/welcome', Welcome.get)
     http.post('/welcome', Welcome.update)
   }
 
-  static get (req, res)
-  {
+  static get (req, res) {
     res.render('session/user/admin/home/welcome')
   }
 
-  static update (req, res)
-  {
+  static update (req, res) {
     User.where('id', req.session.auth.user).fetch()
-      .then (u => {
+      .then(u => {
         u.set('name', req.body.name)
         u.set('email', req.body.email)
         u.set('avatar', req.body.avatar)
@@ -28,10 +23,9 @@ export default class Welcome
         req.session.auth.data.status = 'normal'
         res.redirect('/dashboard')
       })
-      .catch (e => {
+      .catch(e => {
         errorMode = true
         res.render('common/errors/fatal')
       })
   }
-
 }

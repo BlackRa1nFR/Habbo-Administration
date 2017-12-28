@@ -3,101 +3,79 @@ import Moment from 'Moment'
 import Reset from './resets'
 import Hash from 'bcrypt-nodejs'
 import Group from './groups/group'
-import Database from  '../../../system'
+import Database from '../../../system'
 import Event from '../../../../events/admin/user'
 
-export default class User extends Database.Model
-{
+export default class User extends Database.Model {
+  get tableName () {
+    return 'xhabbo_users'
+  }
 
-    get tableName ()
-    {
-        return 'xhabbo_users'
-    }
+  group () {
+    return this.belongsTo(Group, 'group')
+  }
 
-    group ()
-    {
-      return this.belongsTo(Group, 'group')
-    }
+  resets () {
+    return this.hasOne(Reset, 'user')
+  }
 
-    resets ()
-    {
-      return this.hasOne(Reset, 'user')
-    }
-
-
-
-    static tryLogin (username, password)
-    {
-      return new Promise((r, e) => {
-        User.where('username', username).fetch()
-          .then (u => {
-
-            if (u)
-            {
-              if (Hash.compareSync(password, u.toJSON().password))
-              {
+  static tryLogin (username, password) {
+    return new Promise((r, e) => {
+      User.where('username', username).fetch()
+          .then(u => {
+            if (u) {
+              if (Hash.compareSync(password, u.toJSON().password)) {
                 r(u.toJSON())
-              }
-              else
-              {
+              } else {
                 e('password')
               }
-            }
-            else
-            {
+            } else {
               e('fake')
             }
-
-
           })
-          .catch (er => {
+          .catch(er => {
             e(er)
           })
-      })
-    }
+    })
+  }
 
-    static hasDuplicate (username, email)
-    {
-      const user = false
-      return new Promise((r, e) => {
-        Async.series([
+  static hasDuplicate (username, email) {
+    const user = false
+    return new Promise((r, e) => {
+      Async.series([
           // Check username
-          function (cb)
-          {
-            User.where('username', username).fetch()
-              .then (u => {
+        function (cb) {
+          User.where('username', username).fetch()
+              .then(u => {
                 if (u) cb(true)
                 if (!u) cb()
               })
-              .catch (er => {
+              .catch(er => {
                 cb(er)
               })
-          },
+        },
           // Check email
-          function (cb)
-          {
-            User.where('email', email).fetch()
-              .then (u => {
+        function (cb) {
+          User.where('email', email).fetch()
+              .then(u => {
                 if (u) cb(true)
                 if (!u) cb()
               })
-              .catch (er => {
+              .catch(er => {
                 cb(er)
               })
-          }
-        ], ((error, info) =>  {
-          if (!error) r(false)
-          if (error) e(true)
-        }))
+        }
+      ], (error, info) => {
+        if (!error) r(false)
+        if (error) e(true)
       })
-    }
+    })
+  }
 
-    static updateWelcome(id, info)
-    {
-      return new Promise((r, e) => {
-
-        User.where('id', id).fetch()
-          .then (u => {
+  static updateWelcome (id, info) {
+    return new Promise((r, e) => {
+      User.where('id', id).fetch()
+          .then(u => {
             u.set('name', info.name)
             u.set('email', info.email)
             u.set('password', Hash.hashSync(info.password))
@@ -107,21 +85,17 @@ export default class User extends Database.Model
 
             r(true)
           })
-          .catch (er => {
+          .catch(er => {
             e(er)
           })
+    })
+  }
 
-      })
-    }
-
-    static updateAccount (info)
-    {
-      return new Promise((r,e ) => {
-        User.where('id', info.id).fetch()
-          .then (u => {
-
-            if (u)
-            {
+  static updateAccount (info) {
+    return new Promise((r, e) => {
+      User.where('id', info.id).fetch()
+          .then(u => {
+            if (u) {
               const data = u.toJSON()
               u.set('name', info.name)
               u.set('email', info.email)
@@ -138,73 +112,55 @@ export default class User extends Database.Model
               if (info.status == 'locked') Event.SuspensionFiled(info.id, info.username, info.email)
 
               r()
-            }
-            else
-            {
+            } else {
               e('fake account')
             }
-
           })
-          .catch (er => {
+          .catch(er => {
             e(er)
           })
-      })
+    })
+  }
 
-    }
-
-    static doReset (email)
-    {
-
-      return new Promise((r, e) => {
-
-        User.where('email', email).fetch()
-          .then (u => {
-
-            if (u)
-            {
+  static doReset (email) {
+    return new Promise((r, e) => {
+      User.where('email', email).fetch()
+          .then(u => {
+            if (u) {
               Reset.addNew(u.toJSON().id)
-                .then (k => {
+                .then(k => {
                   r(true)
                 })
-                .catch (er => {
+                .catch(er => {
                   e(er)
                 })
-            }
-            else
-            {
+            } else {
               r(false)
             }
-
           })
-          .catch (er => {
+          .catch(er => {
             e(er)
           })
+    })
+  }
 
-
-      })
-    }
-
-    static updatePassword (id, password)
-    {
-      return new Promise((r, e) => {
-        User.where('id', id).save({ password : Hash.hashSync(password), status : 'normal' }, { method : 'update' })
-          .then (u => {
+  static updatePassword (id, password) {
+    return new Promise((r, e) => {
+      User.where('id', id).save({ password: Hash.hashSync(password), status: 'normal' }, { method: 'update' })
+          .then(u => {
             r(true)
           })
-          .catch (er => {
+          .catch(er => {
             e(er)
           })
-      })
-    }
+    })
+  }
 
+  toJSON () {
+    const values = Database.Model.prototype.toJSON.apply(this)
+    values.last_active = Moment(values.last_active).fromNow()
+    values.account_length = Moment(values.created_at).fromNow()
 
-    toJSON ()
-    {
-     const values            = Database.Model.prototype.toJSON.apply(this)
-     values.last_active      = Moment(values.last_active).fromNow()
-     values.account_length   = Moment(values.created_at).fromNow()
-
-     return values;
-   }
-
+    return values
+  }
 }

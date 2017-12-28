@@ -1,14 +1,9 @@
-export default class Index
-{
-
-  constructor (http)
-  {
+export default class Index {
+  constructor (http) {
     http.get('/cms', Index.get)
   }
 
-  static get (req, res)
-  {
+  static get (req, res) {
     res.render('session/user/cms/index')
   }
-  
 }

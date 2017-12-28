@@ -1,35 +1,19 @@
-export default class Error
-{
-
-  constructor (http)
-  {
+export default class Error {
+  constructor (http) {
     http.use(Error.check)
   }
 
-  static check (req, res, n)
-  {
-
-    if (res.locals.website.status == 'maintenance')
-    {
-      if (req.path == '/maintenance')
-      {
+  static check (req, res, n) {
+    if (res.locals.website.status == 'maintenance') {
+      if (req.path == '/maintenance') {
         n()
-      }
-      else
-      {
+      } else {
         res.redirect('/maintenance')
       }
-    }
-
-    else if (!errorMode)
-    {
+    } else if (!errorMode) {
       n()
-    }
-
-    else
-    {
+    } else {
       res.render('common/errors/fatal')
     }
   }
-
 }

@@ -4,27 +4,21 @@ import Website from './libraries/core/http/system'
 import Install from './libraries/core/install/system'
 import Database from './libraries/core/database/test'
 import Background from './libraries/background/system'
-export default class Application
-{
-  constructor ()
-  {
+export default class Application {
+  constructor () {
     Async.parallel([
       Messages.launch,
       Install.check,
       Database.check,
       Website.launch,
       Background.launch
-    ], ((e, r) => {
-
+    ], (e, r) => {
       Messages.write(100, r)
 
-      if (e)
-      {
+      if (e) {
         errorMode = true
         Messages.write(200, e)
       }
-
-    }))
+    })
   }
-
 }

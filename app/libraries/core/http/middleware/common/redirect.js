@@ -1,29 +1,18 @@
-export default class Redirect
-{
-
-  constructor (http)
-  {
+export default class Redirect {
+  constructor (http) {
     http.use(Redirect.handler)
   }
 
-  static handler (req, res, n)
-  {
+  static handler (req, res, n) {
     // Redirect if no route is assigned "/"
-    if (req.path != '/')
-    {
+    if (req.path != '/') {
       n()
-    }
-    else
-    {
-      if (req.session)
-      {
+    } else {
+      if (req.session) {
         res.redirect('/dashboard')
-      }
-      else
-      {
+      } else {
         res.redirect('/login')
       }
     }
   }
-
 }

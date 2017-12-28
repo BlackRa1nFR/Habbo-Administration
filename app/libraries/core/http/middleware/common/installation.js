@@ -1,20 +1,12 @@
-export default class Installation
-{
-
-  constructor (http)
-  {
+export default class Installation {
+  constructor (http) {
     http.use(Installation.check)
   }
 
-  static check (req, res, n)
-  {
-
-    if (installRan)
-    {
+  static check (req, res, n) {
+    if (installRan) {
       n()
-    }
-    else
-    {
+    } else {
       res.render('common/errors/install')
     }
   }

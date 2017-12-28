@@ -1,3 +1,3 @@
-$( function() {
-  $( "#navi" ).tabs();
-} );
+$(function () {
+  $('#navi').tabs()
+})
