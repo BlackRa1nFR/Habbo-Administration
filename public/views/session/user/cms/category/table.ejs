@@ -1,0 +1,34 @@
+<% include ./modules/navi %>
+
+<div class="row droplet-header">
+  <div class="small-12 columns">
+      <ul role="tablist" class="Tabs u-mb-4 droplet-tabs">
+          <li class="is-active"> <a> Categories </a> </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+        <table class="droplet-listing">
+            <thead>
+                <tr>
+                    <th> <span class="headerText"> Title </span> </th>
+                    <th> <span class="headerText"> Articles </span> </th>
+                    <th> <span class="headerText"> Manage </span> </th>
+                </tr>
+            </thead>
+            <tbody>
+              <%  categories.forEach(c => { %>
+                <tr class="done">
+                  <td> <%= c.title %>
+                  <td> <%= c.articles.length %> Posts </td>
+                  <td>
+                    <a href="/cms/category/edit/<%= c.id %>"> <i class="fa fa-pencil"></i> </a>
+                    <a href="/cms/category/delete/<%= c.id %>" style="margin-left:15%;"> <i class="fa fa-trash"></i> </a>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+        </table>
+    </div>
+  </div>

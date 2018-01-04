@@ -1,0 +1,46 @@
+<% include ./modules/navi %>
+
+<div class="row" id="navi">
+  <div class="columns small-12">
+    <ul class="Tabs u-mb-4 droplet-tabs">
+      <li><a>FindRetros API</a></li>
+    </ul>
+  </div>
+  <div class="columns small-12 networkingPage">
+    <div class="u-mb-5">
+
+      <!-- General -->
+      <div class="row" id="navi-1">
+        <div class="small-6 columns">
+          <form method="post">
+            <div>
+              <div>
+                <label>Findretros API</label>
+                <select name="findretros">
+                  <% if (config.findretros == 1) { %>
+                    <option value="1" selected="">Enabled</option>
+                    <option value="0">Disabled</option>
+                  <% } else { %>
+                    <option value="1">Enabled</option>
+                    <option value="0" selected="">Disabled</option>
+                  <% } %>
+                </select>
+              </div>
+              <div>
+                <label>Findretros Username</label>
+                <input name="fr_user" value="<%= config.fr_user%>" type="text">
+              </div>
+              <div>
+                <button class="Button Button--blue Button--large Button--fullWidth ">Save</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>

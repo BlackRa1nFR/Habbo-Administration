@@ -1,0 +1,55 @@
+<% include ./modules/navi %>
+<div class="droplet-show">
+  <div class="row droplet-header">
+      <div class="small-12 columns">
+          <ul role="tablist" class="Tabs u-mb-4 droplet-tabs">
+              <li> <a> Groups</a> </li>
+          </ul>
+      </div>
+  </div>
+
+  <!-- All Groups -->
+  <div class="row">
+      <div class="small-12 columns">
+          <table class="droplet-listing">
+              <thead>
+                  <tr>
+                      <th> <span class="headerText"> Title </span> </th>
+                      <th> <span class="headerText"> Hidden </span> </th>
+                      <th> <span class="headerText"> Manage </span> </th>
+                  </tr>
+              </thead>
+              <tbody>
+                <% groups.forEach(g => { %>
+                  <tr class="done">
+                      <td class="name">
+                          <a href="/hotel/groups/edit/<%= g.id %>">
+                              <div class="ellipsis-text">
+                                  <div class="Resource    Resource--rightContext">
+                                      <div class="Resource-image ">
+                                          <div>
+                                            <object data="<%= website.habbo_images %>/<%= g.badge_code %>.gif" type="image/png">
+                                              <img src="<%= website.habbo_images %>/BE1.gif">
+                                             </object>
+                                          </div>
+                                      </div>
+                                      <div class="Resource-meta  ">
+                                          <div role="button" class="Resource-title"><%= g.rank_name %> </div>
+                                          <div class="Resource-description"> <%= g.members.length %> members </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </a>
+                      </td>
+                      <td> <%= g.hidden %>  </td>
+                      <td>
+                        <a href="/hotel/groups/edit/<%= g.id %>"> <i class="fa fa-pencil"></i> </a>
+                        <a href="/hotel/groups/delete/<%= g.id %>" style="margin-left:10%;"> <i class="fa fa-trash"></i> </a>
+                      </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<% include ./modules/navi %>
+
+<div class="droplet-show" id="navi">
+		<div class="row">
+				<div class="columns small-12">
+						<div class="header" style="border:none;">
+								<div class="droplet-header u-mb-2">
+                  <h3><%= category.title %></h3>
+								</div>
+								<ul class="Tabs u-mb-4 droplet-tabs">
+										<li> <a href="#navi-1"> Basic </a> </li>
+										<li> <a href="#navi-2"> Articles </a> </li>
+								</ul>
+								<div class="row u-mt-5" style="width:100%;">
+									<div style="margin-top:-5%;">
+										<!-- Basic -->
+										<div id="navi-1" style="width:35%;">
+											<form method="post">
+                        <div>
+                          <label>Title</label>
+                          <input name="id" value="<%= category.id %>" type="hidden">
+                          <input name="title" value="<%= category.title %>" type="text" spellcheck="false" required="">
+                        </div>
+                        <div>
+                          <button class="Button Button--blue Button--large Button--fullWidth ">Update Article</button>
+                        </div>
+											</form>
+										</div>
+
+										<!-- Articles-->
+										<div id="navi-2">
+											<% category.articles.forEach(a => { %>
+                        <a href="/cms/news/edit/<%= a.id %>">
+                          <button class="Button Button--blue Button--large "><%= a.title %></button>
+                        </a>
+                      <% }) %>
+                      <a href="/cms/news/create">Publish New Article</a>
+										</div>
+
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>

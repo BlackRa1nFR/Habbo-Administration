@@ -13,13 +13,17 @@
         <div class="columns small-12 u-textAlignCenter">
           <h3><%= log.title %></h3>
           <p class="u-mb-0"><%= log.when %></p>
-          <div class="u-mt-3">
-            <a href="/admin/errors/delete/<%= log.id %>" class="Button Button--blue monitors-create-button empty-state-button ember-view"> Delete </a>
-          </div>
-          <div class="columns small-8 small-centered u-mt-9">
-            <p class="u-mb-2"><a href="/admin/accounts/view/<%= log.user.username %>"><%= log.user.username %></a> triggered the error when accessing <a href="<%= website.link + log.url_accessed %>"><%= website.link + log.url_accessed %></a></p>
+          <div class="columns small-8 small-centered">
+            <% if (log.user) { %>
+              <p class="u-mb-2"><a href="/admin/accounts/view/<%= log.user.username %>"><%= log.user.username %></a> triggered the error when accessing <a href="<%= website.link + log.url_accessed %>"><%= website.link + log.url_accessed %></a></p>
+            <% } else { %>
+              <p class="u-mb-2">Guest triggered the error when accessing <a href="<%= website.link + log.url_accessed %>"><%= website.link + log.url_accessed %></a></p>
+            <% } %>
             <p class="u-mb-2">The following error was returned at the time.</p>
             <div><pre class="u-mb-0"><%= log.content %></pre></div>
+          </div>
+          <div class="u-mt-3">
+            <a href="/admin/errors/delete/<%= log.id %>" class="Button Button--blue monitors-create-button empty-state-button ember-view"> Delete </a>
           </div>
         </div>
       </div>

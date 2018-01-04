@@ -6,22 +6,24 @@
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
-    "bookshelf": "^0.10.4",
-    "connect-flash": "^0.1.1",
+    "bookshelf": "^0.12.0",
     "connect-redis": "^3.3.2",
     "cookie-parser": "^1.4.3",
     "crypto": "^1.0.1",
-    "download": "^6.2.5",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "glob": "^7.1.2",
-    "knex": "^0.13.0",
+    "knex": "^0.14.2",
+    "line-by-line": "^0.1.6",
     "math": "0.0.3",
-    "moment": "^2.19.4",
+    "moment": "^2.20.0",
     "mysql": "^2.15.0",
     "node-mysql-importer": "0.0.10",
     "nodemailer": "^4.4.1",
-    "request": "^2.83.0"
+    "req-flash": "0.0.3"
+  },
+  "devDependencies": {
+    "standard": "^10.0.3"
   }
 }

@@ -7,8 +7,8 @@
         <link href="/css/primary.css" rel="stylesheet">
         <link href="/css/override.css" rel="stylesheet">
         <link href="/css/font-awesome.css" rel="stylesheet">
-        <script src="/js/jquery-1.12.4.js"></script>
-        <script src="/js/jquery-ui.js"></script>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/jquery-ui.min.js"></script>
         <script src="/js/xhabbo.js"></script>
     </head>
     <body class='aurora control_panel user_context'>
@@ -25,11 +25,12 @@
                       <a href="/dashboard" class="navLink ember-view">Home</a>
                       <a href="/admin" class="navLink ember-view">Features</a>
                       <a href="/hotel" class="navLink ember-view">Emulator</a>
+                      <a href="/cms" class="navLink ember-view">Website</a>
                   </div>
                   <div class="columns small-3  stackRight">
                       <div class="aurora-dropdown-menu navigation-dropdown-menu account-dropdown teams-dropdown ember-view">
                           <div role="button" class="dropdown-title">
-                              <div class="ember-view">
+                              <div>
                                   <div class="avatarWrapper  ">
                                       <div class="avatar avatar-overlay"></div>
                                       <img src="<%= user.avatar %>" class="avatar">
@@ -42,13 +43,12 @@
         </div>
     </nav>
 
-
-    <% if (message) { %>
+    <% if (flash.error) { %>
       <div class="row">
       <div class="Alert--neutralGrey u-mb-4 ">
         <div class="Alert-content">
-          <p> <strong> <%= message.title %> </strong>...<%- message.content %> </p>
+          <p><%- flash.error %> </p>
         </div>
       </div>
-    </div>
+      </div>
     <% } %>

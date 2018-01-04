@@ -1,0 +1,139 @@
+<% include ./modules/navi %>
+
+<div class="droplet-show" id="navi">
+		<div class="row">
+				<div class="columns small-12">
+						<div class="header" style="border:none;">
+								<div class="droplet-header u-mb-2">
+										<div role="button" class="can-edit">
+												<div class="Resource Resource--rightContext">
+														<div class="Resource-image large">
+																<img src="<%= website.habbo_images %>/<%= group.badge_code %>.gif">
+														</div>
+														<div class="Resource-meta  ">
+																<div role="button" class="Resource-title">
+																		<%= group.rank_name %>
+																</div>
+														</div>
+												</div>
+
+
+										</div>
+								</div>
+								<ul class="Tabs u-mb-4 droplet-tabs">
+										<li> <a href="#navi-1"> Basic Information </a> </li>
+										<li> <a href="#navi-3"> Commands </a> </li>
+                    <li> <a href="#navi-2"> Member Management </a> </li>
+								</ul>
+								<div class="row u-mt-5">
+									<div class="small-12 columns" style="margin-top:-15%;">
+										<!-- Basic -->
+										<div id="navi-1">
+											<form method="post">
+												<div>
+													<div>
+														<label>Name</label>
+                            <input name="id" value="<%= group.id %>" hidden="">
+														<input name="rank_name" value="<%= group.rank_name %>" type="text" spellcheck="false" required="">
+													</div>
+                          <div>
+                            <label>Badge Code</label>
+                            <input name="badge_code" value="<%= group.badge_code %>" type="text" spellcheck="false" required="">
+                          </div>
+													<div>
+														<label>Prefix</label>
+														<input name="prefix" value="<%= group.prefix %>" type="text" spellcheck="false" required="">
+													</div>
+													<div>
+														<label>Prefix Color</label>
+														<input name="prefix_color" value="<%= group.prefix_color %>" type="text" spellcheck="false" required="">
+													</div>
+													<div>
+														<label>Staff</label>
+														<select name="staff">
+															<% if (group.staff == 1) { %>
+																<option value="1" selected="">True</option>
+																<option value="0">False</option>
+															<% } else { %>
+																<option value="1">True</option>
+																<option value="0" selected="">False</option>
+															<% } %>
+														</select>
+													</div>
+													<div>
+														<label>Hidden</label>
+														<select name="hidden">
+															<% if (group.hidden == 1) { %>
+																<option value="1" selected="">True</option>
+																<option value="0">False</option>
+															<% } else { %>
+																<option value="1">True</option>
+																<option value="0" selected="">False</option>
+															<% } %>
+														</select>
+													</div>
+													<div>
+														<button class="Button Button--blue Button--large Button--fullWidth ">Update</button>
+													</div>
+												</div>
+											</form>
+										</div>
+
+										<!-- Member Management -->
+										<div id="navi-2">
+											<div style="text-align:center;">
+												<form method="post" action="/hotel/groups/member/create">
+													<div style="width:65%;display:inline-block;">
+														<input name="id" value="<%= group.id %>" type="hidden">
+														<input name="username" placeholder="Username" type="text">
+													</div>
+													<div style="width:25%;display:inline-block;">
+														<button class="Button Button--blue Button--large Button--fullWidth ">Add</button>
+													</div>
+												</form>
+											</div>
+											<% group.members.forEach(m => { %>
+												<a href="/hotel/groups/member/remove/<%= m.username %>">
+													<div style="text-align:center;">
+														<img src="<%= website.habbo_imager %>?figure=<%= m.look %>">
+														<br>
+														<%= m.username %>
+													</div>
+												</a>
+											<% }) %>
+										</div>
+
+										<!-- Command Management -->
+										<div id="navi-3">
+											<form method="post">
+												<div>
+													<input name="id" value="<%= group.id %>" type="hidden">
+													<label>Rank Type</label>
+													<select name="permission">
+														<% if (group.permission == 'user') { %>
+															<option value="user" selected="">User</option>
+															<option value="moderator">Moderator</option>
+															<option value="developer">Developer</option>
+														<% } else if (group.permission == 'moderator') { %>
+															<option value="user">User</option>
+															<option value="moderator" selected="">Moderator</option>
+															<option value="developer">Developer</option>
+														<% } else { %>
+															<option value="user">User</option>
+															<option value="moderator">Moderator</option>
+															<option value="developer" selected="">Developer</option>
+														<% } %>
+													</select>
+												</div>
+												<div>
+													<button class="Button Button--blue Button--large Button--fullWidth ">Update</button>
+												</div>
+											</form>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>

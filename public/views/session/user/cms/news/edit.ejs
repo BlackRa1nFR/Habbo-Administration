@@ -1,0 +1,82 @@
+<% include ./modules/navi %>
+
+<div class="droplet-show" id="navi">
+		<div class="row">
+				<div class="columns small-12">
+						<div class="header" style="border:none;">
+								<div class="droplet-header u-mb-2">
+										<div role="button" class="can-edit" data-ember-action="" data-ember-action-1172="1172">
+												<div class="Resource    Resource--rightContext">
+														<div class="Resource-image large">
+																<img src="<%= website.habbo_imager%>?figure=<%= article.author.look %>&headonly=1">
+														</div>
+														<div class="Resource-meta  ">
+																<div role="button" class="Resource-title">
+																		<%= article.title %>
+																</div>
+																<div class="Resource-description"> Posted By <%= article.author.username %> </div>
+														</div>
+												</div>
+
+
+										</div>
+								</div>
+								<ul class="Tabs u-mb-4 droplet-tabs">
+										<li> <a href="#navi-1"> Basic </a> </li>
+										<li> <a href="#navi-2"> Content </a> </li>
+                    <li> <a href="#navi-3"> Preview </a> </li>
+								</ul>
+								<div class="row u-mt-5" style="width:100%;">
+									<div style="margin-top:-5%;">
+										<!-- Basic -->
+										<div id="navi-1" style="width:35%;">
+											<form method="post">
+                        <div>
+                          <label>Title</label>
+                          <input name="id" value="<%= article.id %>" type="hidden">
+                          <input name="title" value="<%= article.title %>" type="text" spellcheck="false" required="">
+                        </div>
+                        <div>
+                          <label>Image</label>
+                          <input name="image" value="<%= article.image %>" type="text" spellcheck="false" required="">
+                        </div>
+												<div>
+													<label>Category</label>
+													<input name="category" value="<%= article.category.title  %>" type="text" spellcheck="false" required="">
+												</div>
+                        <div>
+                          <label>Author</label>
+                          <input name="author" value="<%= article.author.username %>" type="text" spellcheck="false" required="">
+                        </div>
+                        <div>
+                          <button class="Button Button--blue Button--large Button--fullWidth ">Update Article</button>
+                        </div>
+											</form>
+										</div>
+
+										<!-- Content -->
+										<div id="navi-2">
+											<form method="post">
+                        <div>
+                          <label>Content</label>
+                          <input name="id" value="<%= article.id %>" type="hidden">
+                          <textarea name="content" style="width:100%;" rows="10"><%= article.content %></textarea>
+                        </div>
+                        <div>
+                          <button class="Button Button--blue Button--large Button--fullWidth ">Update Article</button>
+                        </div>
+											</form>
+										</div>
+
+                    <!-- HTML Content -->
+                    <div id="navi-3">
+                      <%- article.content %>
+                    </div>
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>

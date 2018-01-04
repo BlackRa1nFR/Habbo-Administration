@@ -1,25 +1,23 @@
-export default class Reset
-{
+import Event from '../../../events/admin/user'
+import Error from '../../../modules/error'
+import Users from '../../../database/models/admin/users/user'
+import Keys from '../../../database/models/admin/users/resets'
+import Session from '../../../database/models/admin/users/session'
 
-  constructor (http)
-  {
+export default class Reset {
+  constructor (http) {
     http.get('/reset', Reset.get)
     http.post('/reset', Reset.do)
+    http.get('/reset/:key', Event.PasswordChangeStarted)
   }
 
-  static get (req, res)
-  {
+  static get (req, res) {
     res.render('session/guest/reset')
   }
 
-  static do (req, res)
-  {
-    res.render('session/guest/login', {
-      message : {
-        type : 'success',
-        text : `If the email you specified exists in our system, we've sent a password reset link to it.`
-      }
-    })
+  static do (req, res) {
+    Event.PasswordChangeRequested(req.body.email)
+    req.flash('success', 'If the email you specified exists in our system, we\'ve sent a password reset link to it.')
+    res.redirect('/login')
   }
-
 }

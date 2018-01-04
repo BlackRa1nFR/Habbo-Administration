@@ -1,0 +1,51 @@
+<% include ./modules/navi %>
+
+<div class="row droplet-header">
+  <div class="small-12 columns">
+      <ul role="tablist" class="Tabs u-mb-4 droplet-tabs">
+          <li class="is-active"> <a> Articles </a> </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+        <table class="droplet-listing">
+            <thead>
+                <tr>
+                    <th> <span class="headerText"> Title </span> </th>
+                    <th> <span class="headerText"> Posted </span> </th>
+                    <th> <span class="headerText"> Manage </span> </th>
+                </tr>
+            </thead>
+            <tbody>
+              <% news.forEach(a => { %>
+                <tr class="done">
+                    <td class="name">
+                        <a href="/cms/news/edit/<%= a.id %>">
+                            <div class="ellipsis-text">
+                                <div class="Resource    Resource--rightContext">
+                                    <div class="Resource-image ">
+                                        <div class="resource-icon droplet"> <img src="<%= website.habbo_imager %>?figure=<%= a.author.look %>&headonly=1>"> </div>
+                                    </div>
+                                    <div class="Resource-meta  ">
+                                        <div role="button" class="Resource-title"><%= a.title %> </div>
+                                        <div class="Resource-description"> Posted By <%= a.author.username %> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="statusIndicator new  hasBg">
+                        </div>
+                        <div class="status-spinner-bg"></div>
+                    </td>
+                    <td> <%= a.created_at %> </td>
+                    <td>
+                      <a href="/cms/news/edit/<%= a.id %>"> <i class="fa fa-pencil"></i> </a>
+                      <a href="/cms/news/delete/<%= a.id %>" style="margin-left:15%;"> <i class="fa fa-trash"></i> </a>
+                    </td>
+                </tr>
+              <% }) %>
+            </tbody>
+        </table>
+    </div>
+  </div>

@@ -1,18 +1,12 @@
 import User from './user'
-import Database from  '../../../system'
+import Database from '../../../system'
 
-export default class Bans extends Database.Model
-{
+export default class Bans extends Database.Model {
+  get tableName () {
+    return 'bans'
+  }
 
-    get tableName ()
-    {
-        return 'bans'
-    }
-
-    user ()
-    {
-      return this.hasOne(User, 'id', 'value')
-    }
-
-
+  user () {
+    return this.hasOne(User, 'id', 'value')
+  }
 }

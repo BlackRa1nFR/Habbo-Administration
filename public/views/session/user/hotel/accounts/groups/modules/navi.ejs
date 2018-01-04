@@ -1,0 +1,31 @@
+<% include ../../../../header %>
+<div class="aurora-body">
+  <div class="row">
+      <div class="columns small-12">
+          <h1>Hotel Permissions</h1>
+      </div>
+  </div>
+  <div class="row">
+    <div class="columns small-2">
+      <nav class="SideNav settings-side-nav js-settings-side-nav">
+        <h3>
+          <div>
+            <div class="avatarWrapper ">
+              <span class="context-avatar context-avatar-tiny" style="margin-left:15%;">
+                <img src="<%= user.avatar %>" class="avatar-tiny">
+              </span>
+            </div>
+          </div>
+          <div class="ellipsis-text" style="margin-left:15%;">  <%= user.username %> </div>
+        </h3>
+        <ul class="List--noBullets">
+					<br>
+					<li> <a role="button" href="" class="navLink active">Group Management</a> </li>
+					<li> <a role="button" href="/hotel/groups" class="navLink">List All Groups</a> </li>
+					<li> <a role="button" href="/hotel/groups/create" class="navLink">Create Group</a> </li>
+
+      </ul>
+      </nav>
+		</div>
+		<div class="columns small-10 settings">
+      <div class="aurora-body">

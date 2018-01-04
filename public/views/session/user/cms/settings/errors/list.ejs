@@ -1,0 +1,51 @@
+<% include ../modules/navi %>
+<div class="row">
+  <div class="columns small-12">
+    <h1>Errors</h1>
+  </div>
+</div>
+
+<div class="row" id="navi">
+  <div class="columns small-12">
+    <ul class="Tabs u-mb-4 droplet-tabs">
+      <li><a>Errors</a></li>
+    </ul>
+  </div>
+  <div class="columns small-12 networkingPage">
+    <div class="u-mb-5">
+      <div class="row">
+        <div class="small-12 columns">
+          <% if (errors.length > 0) { %>
+            <table class="droplet-listing">
+                <thead>
+                    <tr>
+                        <th> <span class="headerText"> Page Accessed</span> </th>
+                        <th> <span class="headerText"> How Long Ago </span> </th>
+                        <th> <span class="headerText"> Manage </span> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <% errors.forEach(log => { %>
+                    <tr class="done">
+                        <td> <%= log.title %> </td>
+                        <td> <%= log.created_at %> </td>
+                        <td>
+                          <a href="/cms/errors/view/<%= log.id %>"> <i class="fa fa-pencil"></i> </a>
+                          <a href="/cms/errors/delete/<%= log.id %>" style="margin-left:25%;"> <i class="fa fa-trash"></i> </a>
+                        </td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+            </table>
+          <% } else { %>
+            <div class="EmptyState Box">
+              <img src="https://cloud-cdn-digitalocean-com.global.ssl.fastly.net/aurora/assets/images/empty-dns-8c13fa46fed6fd47812f9d1fce5fac9f.svg" alt="No DNS Records" class="EmptyState-image">
+              <h3>Good News</h3>
+              <p>No errors have occured.</p>
+          </div>
+        <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
