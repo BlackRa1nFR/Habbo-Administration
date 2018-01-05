@@ -23,6 +23,7 @@
         <ul class="List--noBullets">
           <br>
           <li> <a role="button" href="" class="navLink active">Features</a> </li>
+          <li> <a role="button" href="/hotel/settings" class="navLink">Emulator Settings</a> </li>
           <li> <a role="button" href="/hotel/accounts" class="navLink">Manage Users</a> </li>
           <li> <a role="button" href="/hotel/groups" class="navLink">Permission Groups</a> </li>
           <br>
@@ -30,37 +31,30 @@
           <li> <a role="button" href="/hotel/catalog" class="navLink">Catalog Editor</a> </li>
       </ul>
       </nav>
-
-        </div>
-        <div class="columns small-10 settings">
-            <div class="settings-profile">
-                <div class="row u-mb-6">
-                    <div class="small-12 columns">
-                        <div class="Box">
-                            <div class="row">
-                                <div class="small-2 columns">
-                                    <div id="ember1426" class="ember-view">
-                                        <div class="avatarWrapper  ">
-                                            <div class="avatar avatar-overlay"></div>
-                                            <img src="<%= user.avatar %>" class="avatar">
-                                        </div>
+    </div>
+    <div class="columns small-10 settings">
+        <div class="settings-profile">
+            <div class="row u-mb-6">
+                <div class="small-12 columns">
+                    <div class="Box">
+                        <div class="row">
+                            <div class="small-2 columns">
+                                <div id="ember1426" class="ember-view">
+                                    <div class="avatarWrapper  ">
+                                        <div class="avatar avatar-overlay"></div>
+                                        <img src="<%= user.avatar %>" class="avatar">
                                     </div>
                                 </div>
-                                <div class="small-7 columns">
-                                    <h2 class="username"> <%= user.name %> <small>(<%= user.group.title %>)</small></h2>
-                                    <ul class="List--noBullets">
-                                        <li><%= user.email %></li>
-                                        <li>Member since <%= user.account_length %></li>
-                                    </ul>
-                                </div>
+                            </div>
+                            <div class="small-7 columns">
+                                <h2 class="username"> <%= user.name %> <small>(<%= user.group.title %>)</small></h2>
+                                <ul class="List--noBullets">
+                                    <li><%= user.email %></li>
+                                    <li>Member since <%= user.account_length %></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
-        </div>
-    </div>
-
-</div>
+          </div>
